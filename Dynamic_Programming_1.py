@@ -72,3 +72,5 @@
 #         break
 #     else :
 #         print(f"w({a}, {b}, {c}) = {result}")
+
+
