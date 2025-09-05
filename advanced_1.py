@@ -105,3 +105,45 @@
 # print(count)
 
 
+# 25206
+# 전공 평점 계싼해주는 문제
+# 입력 방식은 문자열, 공백, 학점, 공백, A+로 되어있는 것이 20줄로 들어옴
+# 여기서 학점만 가져와야하는데 만약 등급이 P or F로 되어 있으면 전공평점 계산에서 제외
+# 전공 평점 계산식은 학점*과목평점의 합을 학점의 총 합으로 나누기
+# a+ : 4.5 ~ D0 : 1.0, F : 0.0
+
+# sum = 0
+# score = 0
+
+# for _ in range(20):
+#     a = input().split()
+#     if(a[2] == 'A+'):
+#         score = score + float(a[1])
+#         sum = sum + (float(a[1])*4.5)
+#     elif(a[2] == 'A0'):
+#         score = score + float(a[1])
+#         sum = sum + (float(a[1])*4)
+#     elif(a[2] == 'B+'):
+#         score = score + float(a[1])
+#         sum = sum + (float(a[1])*3.5)
+#     elif(a[2] == 'B0'):
+#         score = score + float(a[1])
+#         sum = sum + (float(a[1])*3)
+#     elif(a[2] == 'C+'):
+#         score = score + float(a[1])
+#         sum = sum + (float(a[1])*2.5)
+#     elif(a[2] == 'C0'):
+#         score = score + float(a[1])
+#         sum = sum + (float(a[1])*2)
+#     elif(a[2] == 'D+'):
+#         score = score + float(a[1])
+#         sum = sum + (float(a[1])*1.5)
+#     elif(a[2] == 'D0'):
+#         score = score + float(a[1])
+#         sum = sum + (float(a[1])*1)
+#     elif(a[2] == 'F'):
+#         score = score + float(a[1])
+
+# print(sum/score)
+
+
