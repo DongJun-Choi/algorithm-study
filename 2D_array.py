@@ -91,3 +91,69 @@
 #     area += sum(black[i])
 
 # print(area)
+
+
+# 초기 내 아이디어를 gpt를 통하여 코드로 구현, 문제 통과함
+
+# import sys
+
+# input = sys.stdin.readline
+
+# n = int(input())
+# rects = [tuple(map(int, input().split())) for _ in range(n)]
+
+# # 이벤트: (x, type, y1, y2)  type=+1(시작), -1(끝)
+# events = []
+# for x, y in rects:
+#     events.append((x, +1, y, y + 10))
+#     events.append((x + 10, -1, y, y + 10))
+
+# # x 기준 정렬
+# events.sort()
+
+# active = []  # 활성 y-구간들 (y1, y2)들을 다 넣어둠 (중복 허용)
+# area = 0
+# prev_x = events[0][0] if events else 0
+
+# def union_length(intervals):
+#     """여러 [y1,y2) 구간의 합집합 길이"""
+#     if not intervals:
+#         return 0
+#     intervals = sorted(intervals)  # y1 기준
+#     total = 0
+#     cur_s, cur_e = intervals[0]
+#     for s, e in intervals[1:]:
+#         if s <= cur_e:        # 겹치거나 맞닿음
+#             if e > cur_e:
+#                 cur_e = e
+#         else:                  # 분리
+#             total += cur_e - cur_s
+#             cur_s, cur_e = s, e
+#     total += cur_e - cur_s
+#     return total
+
+# i = 0
+# m = len(events)
+# while i < m:
+#     x = events[i][0]
+#     # 직전 x~현재 x까지 면적 누적
+#     dx = x - prev_x
+#     if dx > 0:
+#         ly = union_length(active)
+#         area += dx * ly
+#         prev_x = x
+
+#     # 같은 x에 있는 이벤트들을 한 번에 처리
+#     while i < m and events[i][0] == x:
+#         _, typ, y1, y2 = events[i]
+#         if typ == +1:
+#             active.append((y1, y2))
+#         else:
+#             # 같은 (y1,y2) 하나 제거 (중복 가능성 있으니 첫 매치만 제거)
+#             for k in range(len(active)):
+#                 if active[k] == (y1, y2):
+#                     active.pop(k)
+#                     break
+#         i += 1
+
+# print(area)
