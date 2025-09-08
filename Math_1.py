@@ -66,3 +66,17 @@
 #     remain.append(f"{Q} {D} {N} {P}")
 
 # print("\n".join(remain))
+
+
+# 2903
+# 총 점의 수를 구하는데 중복은 포함 안되게
+# 초기 4 = 2*2, 1번 3*3, 2번 5*5, 3번? (5*2-1)*(5*2-1)
+
+# N = int(input())
+
+# A = 2
+
+# for i in range(N):
+#     A = (A*2-1)
+
+# print(A*A)
