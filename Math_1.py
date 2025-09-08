@@ -18,3 +18,25 @@
 #     num -= 1
 
 # print(sum)
+
+
+# 11005
+# 10진수 N을 주고 B진법을 준다
+# N을 B진법으로 바꿔서 출력
+# N / B하고 남은 걸 계속 진행해서 못 나누면 그게 1의 자리
+
+# N, B = map(int, input().split())
+
+# num = ''
+
+# while N > 0:
+#     remain = N % B
+#     if remain < 10:
+#         num = str(remain) + num
+#     else:
+#         num = chr(ord('A') + remain - 10) + num
+#     N = N // B
+
+# print(num)
+
+
