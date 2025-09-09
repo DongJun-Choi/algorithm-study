@@ -80,3 +80,20 @@
 #     A = (A*2-1)
 
 # print(A*A)
+
+
+# 2292
+# 1~7~19~37~61
+# 6, 12, 18, 24, 30
+# 6씩 증가함
+
+# N = int(input())
+# total = 1
+# A = 1
+
+# while N > total:
+#     N = N - total
+#     total = 6*A
+#     A += 1
+
+# print(A)
