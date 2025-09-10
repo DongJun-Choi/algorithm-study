@@ -35,3 +35,27 @@
 #     print(0)
 # else:
 #     print(num[K-1])
+
+
+# 9506
+# n과 n의 모든 약수를 더한 값이 같으면 완전수, 아니면 n is NOT perfect.
+
+# results = []
+
+# while True:
+#     N = int(input())
+#     if N == -1:
+#         break
+
+#     num = []
+#     for i in range(1, N):
+#         if N % i == 0:
+#             num.append(i)
+
+#     if N == sum(num):
+#         results.append(f"{N} = " + " + ".join(map(str, num)))
+#     else:
+#         results.append(f"{N} is NOT perfect.")
+
+# for line in results:
+#     print(line)
