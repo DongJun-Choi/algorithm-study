@@ -83,3 +83,33 @@
 #         count += 1
 
 # print(count)
+
+
+# 2581
+# 자연수 M과 N을 준다.
+# M이상 N이하의 자연수 중 소수인 것을 골라 소수의 합과 최솟값 구하기
+
+# def is_prime(n):
+#     if n < 2:
+#         return False
+#     for i in range(2, n):
+#         if n % i == 0:
+#             return False
+#     return True
+
+# M = int(input())
+# N = int(input())
+# prime = []
+
+# if M == N and is_prime(M):
+#     prime.append(M)
+# else:
+#     for i in range(M, N+1):
+#         if is_prime(i) == True:
+#             prime.append(i)
+
+# if len(prime) == 0:
+#     print(-1)
+# else:
+#     print(sum(prime))
+#     print(prime[0])
