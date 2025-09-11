@@ -113,3 +113,16 @@
 # else:
 #     print(sum(prime))
 #     print(prime[0])
+
+
+# 11653
+# 정수 N을 줄때 소인수 분해 하는 프로그램
+
+# N = int(input())
+
+# while N > 1:
+#     for i in range(2, N+1):
+#         if N % i == 0:
+#             print(i)
+#             N = N // i
+#             break
