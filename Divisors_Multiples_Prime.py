@@ -59,3 +59,27 @@
 
 # for line in results:
 #     print(line)
+
+
+# 1978
+# 처음에 개수 N 주어지고 N개 만큼 값이 들어옴
+# 들어온 값 중에 소수가 몇개인지 찾기
+# 소수 찾는법?
+
+# def is_prime(n):
+#     if n < 2:
+#         return False
+#     for i in range(2, n):
+#         if n % i == 0:
+#             return False
+#     return True
+
+# N = int(input())
+# num = list(map(int, input().split()))
+# count = 0
+
+# for i in num:
+#     if is_prime(i):
+#         count += 1
+
+# print(count)
