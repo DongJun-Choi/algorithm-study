@@ -18,5 +18,10 @@ public class InOut_Arithmetic {
         // double a = sc.nextDouble();
         // double b = sc.nextDouble();
         // System.out.println(a/b);
+
+        // 10926
+        // Scanner sc = new Scanner(System.in);
+        // String s = sc.nextLine();
+        // System.out.println(s+"??!");
     }
 }
