@@ -28,5 +28,14 @@ public class InOut_Arithmetic {
         // Scanner sc = new Scanner(System.in);
         // int a = sc.nextInt();
         // System.out.println(a-(2541-1998));
+
+        // 10172
+        // \를 문자열로 출력하려면 \\
+        // "을 문자열로 출력하려면 \"
+        // System.out.println("|\\_/|");
+        // System.out.println("|q p|   /}");
+        // System.out.println("( 0 )\"\"\"\\");
+        // System.out.println("|\"^\"`    |");
+        // System.out.println("||_/=\\\\__|");
     }
 }
