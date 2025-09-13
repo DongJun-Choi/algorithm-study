@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class InOut_Arithmetic {
     public static void main(String[] args) {
@@ -37,5 +38,10 @@ public class InOut_Arithmetic {
         // System.out.println("( 0 )\"\"\"\\");
         // System.out.println("|\"^\"`    |");
         // System.out.println("||_/=\\\\__|");
+
+        // 10699
+        // java.time.LocalDate패키지 사용
+        // LocalDate today = LocalDate.now();
+        // System.out.println(today);
     }
 }
