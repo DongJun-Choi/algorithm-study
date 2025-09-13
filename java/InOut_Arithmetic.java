@@ -23,5 +23,10 @@ public class InOut_Arithmetic {
         // Scanner sc = new Scanner(System.in);
         // String s = sc.nextLine();
         // System.out.println(s+"??!");
+
+        // 18108
+        // Scanner sc = new Scanner(System.in);
+        // int a = sc.nextInt();
+        // System.out.println(a-(2541-1998));
     }
 }
