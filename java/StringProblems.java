@@ -35,5 +35,32 @@ public class StringProblems {
         // }
 
         // System.out.println(change);
+
+
+        // 2754
+        // Scanner sc = new Scanner(System.in);
+        // String score = sc.nextLine();
+        // double avg = 0.0;
+
+        // if (score.charAt(0) == 'A') {
+        //     avg = 4.0;
+        // } else if (score.charAt(0) == 'B') {
+        //     avg = 3.0;
+        // } else if (score.charAt(0) == 'C') {
+        //     avg = 2.0;
+        // } else if (score.charAt(0) == 'D') {
+        //     avg = 1.0;
+        // } else {
+        //     avg = 0.0;
+        // }
+
+        // if (score.length() == 2) {
+        //     if (score.charAt(1) == '+') {
+        //         avg = avg + 0.3;
+        //     } else if (score.charAt(1) == '-') {
+        //         avg = avg - 0.3;
+        //     }
+        // }
+        // System.out.println(avg);
     }
 }
