@@ -44,31 +44,44 @@ public class RectangleTriangle_1 {
         // a, c, e중에 같은게 있는지 찾기
         // b, d, f중에 같은게 있는지 찾기
         // 짝이 안맞는 값들을 x, y로 설정
+        // xor를 사용하면 if 사용안해도 가능
 
-        Scanner sc = new Scanner(System.in);
-        int a = sc.nextInt();
-        int b = sc.nextInt();
-        int c = sc.nextInt();
-        int d = sc.nextInt();
-        int e = sc.nextInt();
-        int f = sc.nextInt();
+        // Scanner sc = new Scanner(System.in);
+        // int a = sc.nextInt();
+        // int b = sc.nextInt();
+        // int c = sc.nextInt();
+        // int d = sc.nextInt();
+        // int e = sc.nextInt();
+        // int f = sc.nextInt();
 
-        int x;
-        int y;
-        if (a == c) {
-            x = e;
-        } else if (a == e) {
-            x = c;
-        } else {
-            x = a;
-        }
-        if (b == d) {
-            y = f;
-        } else if (b == f) {
-            y = d;
-        } else {
-            y = b;
-        }
-        System.out.println(x+" "+y);
+        // int x;
+        // int y;
+        // if (a == c) {
+        //     x = e;
+        // } else if (a == e) {
+        //     x = c;
+        // } else {
+        //     x = a;
+        // }
+        // if (b == d) {
+        //     y = f;
+        // } else if (b == f) {
+        //     y = d;
+        // } else {
+        //     y = b;
+        // }
+
+        // int x = a ^ c ^ e;
+        // int y = b ^ d ^ f;
+
+        // System.out.println(x+" "+y);
+
+
+        // 15894
+        // 제일 아래부분의 정사각형 개수 n을 주면 둘레 길이 구하기
+        // n(아래변의 길이)+2n(옆면의 길이)+n(윗면의 길이)
+        // Scanner sc = new Scanner(System.in);
+        // long n = sc.nextLong();
+        // System.out.println(4*n);
     }
 }
