@@ -37,5 +37,38 @@ public class RectangleTriangle_1 {
         // } else {
         //     System.out.println(sorty);
         // }
+
+
+        // 3009
+        // (a, b) (c, d) (e, f)를 받을 때 직사각형 만들기 위한 (x, y)찾기
+        // a, c, e중에 같은게 있는지 찾기
+        // b, d, f중에 같은게 있는지 찾기
+        // 짝이 안맞는 값들을 x, y로 설정
+
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int d = sc.nextInt();
+        int e = sc.nextInt();
+        int f = sc.nextInt();
+
+        int x;
+        int y;
+        if (a == c) {
+            x = e;
+        } else if (a == e) {
+            x = c;
+        } else {
+            x = a;
+        }
+        if (b == d) {
+            y = f;
+        } else if (b == f) {
+            y = d;
+        } else {
+            y = b;
+        }
+        System.out.println(x+" "+y);
     }
 }
