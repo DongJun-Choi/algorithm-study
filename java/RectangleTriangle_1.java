@@ -83,5 +83,52 @@ public class RectangleTriangle_1 {
         // Scanner sc = new Scanner(System.in);
         // long n = sc.nextLong();
         // System.out.println(4*n);
+
+
+        // 9063
+        // 점의 개수 N, 각 점의 좌표값 제공
+        // 1개만 들어오면 0 출력
+        // 들어온 좌표에 따라서 x와 y 가장 작은 값과 큰값들 저장해서
+        // 그걸로 
+        // Scanner sc = new Scanner(System.in);
+        // int n = sc.nextInt();
+        // int x=10000;
+        // int y=10000;
+        // int w=0;
+        // int h=0;
+
+        // for (int i=0;i<n;i++) {
+        //     int a = sc.nextInt();
+        //     int b = sc.nextInt();
+        //     if (x > a) {
+        //         x = a;
+        //     }
+        //     if (y > b) {
+        //         y = b;
+        //     }
+        //     if (w < a) {
+        //         w = a;
+        //     }
+        //     if (h < b) {
+        //         h = b;
+        //     }
+        // }
+        // int result = (w-x)*(h-y);
+        // System.out.println(result);
+
+
+        // 10101
+        // Scanner sc = new Scanner(System.in);
+        // int a = sc.nextInt();
+        // int b = sc.nextInt();
+        // int c = sc.nextInt();
+
+        // if (a+b+c == 180) {
+        //     if (a==60 && b==60 && c==60) System.out.println("Equilateral");
+        //     else if (a==b || b==c || a==c) System.out.println("Isosceles");
+        //     else System.out.println("Scalene"); 
+        // } else {
+        //     System.out.println("Error");
+        // }
     }
 }
