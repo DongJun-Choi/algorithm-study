@@ -153,6 +153,22 @@ public class RectangleTriangle_1 {
         //     }
         // }
 
-        
+
+        // 14215
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+        int max = Math.max(a, Math.max(c, b));
+        int result;
+
+        if (a<b+c && b<a+c && c<b+a) {
+            result = a+b+c;
+        } else {
+            if (a == max) result = a-(a-(b+c)+1)+b+c;
+            else if (b == max) result = a+b-(b-(a+c)+1)+c;
+            else result = a+b+c-(c-(a+b)+1);
+        }
+        System.out.println(result);
     }
 }
