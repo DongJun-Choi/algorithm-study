@@ -73,15 +73,31 @@ public class TimeComplexity {
         // A[], n 들어오면
         // (n-2)(n-i-1)(n-j)번 실행 O(n^3)으로 차수는 3
         // 반복횟수((n-1) - (i+1) +1)
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        long total = (long) (n*(n-2)*(n-1))/6;
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+        // long total = (long)n*(n-1)*(n-2)/6;
 
-        System.out.println(total);
-        System.out.println(3);
+        // System.out.println(total);
+        // System.out.println(3);
+
+
+        // 24313
+        // g(n) = f(n) <= c*g(n)인 c와 n0 존재
+        // a1, a0을 줄때, c의 값과 n0을 보고 O(n)정의 만족하는지 판단 후 1, 0출력
+        // 판단 방법은? f(n) = a1*n + a0, g(n)=n, c=c, n0=n0. n >= n0에 대해서
+        // a1*n0 + a0 <= c*n0
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // long a0 = Long.parseLong(st.nextToken());
+        // long a1 = Long.parseLong(st.nextToken());
+        // long c = Long.parseLong(br.readLine());
+        // long n0 = Long.parseLong(br.readLine());
+        
+        // if ((a1*n0 + a0) <= (c*n0) && a1 <= c) System.out.println(1);
+        // else System.out.println(0);
 
     }
-    
 }
