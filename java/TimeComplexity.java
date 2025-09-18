@@ -67,6 +67,21 @@ public class TimeComplexity {
 
         // System.out.println(total);
         // System.out.println(3);
+
+
+        // 24267
+        // A[], n 들어오면
+        // (n-2)(n-i-1)(n-j)번 실행 O(n^3)으로 차수는 3
+        // 반복횟수((n-1) - (i+1) +1)
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        long total = (long) (n*(n-2)*(n-1))/6;
+
+        System.out.println(total);
+        System.out.println(3);
+
     }
     
 }
