@@ -40,6 +40,25 @@ public class TimeComplexity {
         // System.out.println((long) n*n);
         // System.out.println(2);
 
+
+        // 24265
+        // A[], n 들어오면
+        // n*(n-i)번 실행하기 때문에 O(n*n)으로 차수는 2
+        // 실제 횟수는 n(n-1) / 2
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+
+        // long total = (long)n * (n-1) / 2;
+
+        // System.out.println(total);
+        // System.out.println(2);
+
+
+        // 24266
+
+
     }
     
 }
