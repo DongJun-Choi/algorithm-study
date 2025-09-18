@@ -8,13 +8,24 @@ public class TimeComplexity {
         // n/2의 값이 정수로 안될때는 올림시킴
         // 실행횟수는 1회 고정
         // 시간 복잡도 차수는 O(1)은 차수가 0
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+
+        // System.out.println(1);
+        // System.out.println(0);
+
+
+        // 53
+        // A[], n 들어오면 sum
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(st.nextToken());
 
+        System.out.println(n);
         System.out.println(1);
-        System.out.println(0);
 
     }
     
