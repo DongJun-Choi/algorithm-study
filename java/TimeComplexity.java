@@ -57,8 +57,16 @@ public class TimeComplexity {
 
 
         // 24266
+        // A[], n 들어오면
+        // n*n*n번 실행하므로 O(n^3)으로 차수는 3
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+        // long total = (long) n*n*n;
 
+        // System.out.println(total);
+        // System.out.println(3);
     }
     
 }
