@@ -18,14 +18,27 @@ public class TimeComplexity {
 
 
         // 53
-        // A[], n 들어오면 sum
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // A[], n 들어오면
+        // n번 실행하기 때문에 O(n)실행
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
 
-        System.out.println(n);
-        System.out.println(1);
+        // System.out.println(n);
+        // System.out.println(1);
+
+
+        // 24264
+        // A[], n 들어오면
+        // n*n번 실행하기 때문에 O(n*n)으로 차수는 2
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+
+        // System.out.println((long) n*n);
+        // System.out.println(2);
 
     }
     
