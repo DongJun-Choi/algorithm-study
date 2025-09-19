@@ -141,6 +141,51 @@ public class BruteForce {
         // System.out.println(count);
 
 
-        // 
+        // 1436
+        // 666값은 필수, 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+
+        // int count = 0;
+        // int i = 666;
+        // int result = 0;
+        // while(true){
+        //     String movie = String.valueOf(i);
+        //     if (movie.contains("666")) count++;
+        //     if (n == count){
+        //         result = i;
+        //         break;
+        //     }
+        //     i++;
+        // }
+
+        // System.out.println(result);
+
+
+        // 2839
+        // N을 배달해야함. 3, 5단위로 존재
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int num = 0;
+
+        // 3으로 나눌 수 있는데 5를 뺄경우 계산이 안되는 경우 존재 6
+        // 3으로 나눌 수 없지만 5를 빼면 나눌 수 있는 경우 존재 8
+        while (true) {
+            if (n % 5 == 0) {
+                num += n/5;
+                System.out.println(num);
+                break;
+            }
+            n -= 3;
+            num++;
+            if (n < 0) {
+                System.out.println(-1);
+                break;
+            }
+        }
     }
 }
