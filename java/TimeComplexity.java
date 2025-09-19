@@ -91,12 +91,12 @@ public class TimeComplexity {
         // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         // StringTokenizer st = new StringTokenizer(br.readLine());
-        // long a0 = Long.parseLong(st.nextToken());
         // long a1 = Long.parseLong(st.nextToken());
+        // long a0 = Long.parseLong(st.nextToken());
         // long c = Long.parseLong(br.readLine());
         // long n0 = Long.parseLong(br.readLine());
         
-        // if ((a1*n0 + a0) <= (c*n0) && a1 <= c) System.out.println(1);
+        // if (a1 <= c && a1*n0 + a0 <= c*n0) System.out.println(1);
         // else System.out.println(0);
 
     }
