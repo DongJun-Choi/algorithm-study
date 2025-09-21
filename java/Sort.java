@@ -38,30 +38,48 @@ public class Sort {
         // Arrays.stream(arr).max().orElse(Integer.MIN_VALUE); 최댓값
         // Arrays.stream(arr).min().orElse(Integer.MAX_VALUE); 최솟값
         // Arrays.stream(arr).count(); 개수
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int[] numbers = new int[5];
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // int[] numbers = new int[5];
 
-        for (int i=0; i<5; i++) {
-            numbers[i] = Integer.parseInt(br.readLine());
-        }
+        // for (int i=0; i<5; i++) {
+        //     numbers[i] = Integer.parseInt(br.readLine());
+        // }
 
-        int sum = 0;
-        for (int num : numbers) {
-            sum += num;
-        }
-        int mean = sum / numbers.length;
+        // int sum = 0;
+        // for (int num : numbers) {
+        //     sum += num;
+        // }
+        // int mean = sum / numbers.length;
 
-        Arrays.sort(numbers);
-        int n = numbers.length;
-        int median;
-        if (n % 2 == 1) {
-            median = numbers[n/2];
-        } else {
-            median = (numbers[n / 2 -1] + numbers[n / 2]) / 2;
-        }
+        // Arrays.sort(numbers);
+        // int n = numbers.length;
+        // int median;
+        // if (n % 2 == 1) {
+        //     median = numbers[n/2];
+        // } else {
+        //     median = (numbers[n / 2 -1] + numbers[n / 2]) / 2;
+        // }
 
-        System.out.println(mean);
-        System.out.println(median);
+        // System.out.println(mean);
+        // System.out.println(median);
         
+
+        // 25305
+        // 응시자 수 N, 점수가 가장 높은 k명은 상 받음
+        // k명 중 가장 점수가 낮은 사람을 구해라.
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+        int[] scores = new int[n];
+
+        st = new StringTokenizer(br.readLine());
+        for (int i=0; i<n; i++) {
+            scores[i] = Integer.parseInt(st.nextToken());
+        }
+
+        Arrays.sort(scores);
+        System.out.println(scores[n-k]);
     }
 }
