@@ -87,7 +87,6 @@ public class Sort {
         // 둘째줄부터 n줄까지 한개씩 입력 = 총 n개 입력 받음
         // 첫째 줄에는 n 입력
         // 이름 오름차 순으로 정렬하는데 출력도 한줄에 1개씩
-        // 그렇다면 while문으로 하고 값을 입력 받고 바로바로 배열에 넣기
         // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         // StringBuilder sb = new StringBuilder();
 
@@ -105,5 +104,28 @@ public class Sort {
         //     sb.append(i).append("\n");
         // }
         // System.out.println(sb);
+
+
+        // 10989
+        // 첫줄에 수의 갯수 N 입력, 이후 한줄에 수 한개씩 n줄 입력
+        // 오름차순으로 한줄에 하나씩 출력
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+
+        // int n = Integer.parseInt(br.readLine());
+        // int[] arr = new int[n];
+
+        // for (int i=0; i<n; i++) {
+        //     int a = Integer.parseInt(br.readLine());
+        //     arr[i] = a;
+        // }
+        // Arrays.sort(arr);
+
+        // for (int i : arr) {
+        //     sb.append(i).append("\n");
+        // }
+
+        // System.out.println(sb);
+
     }
 }
