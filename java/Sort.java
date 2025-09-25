@@ -192,5 +192,37 @@ public class Sort {
         // }
 
         // System.out.println(sb);
+
+
+        // 11651
+        // 2차원 평면 위의 점의 개수 N이 첫째줄에 입력
+        // 둘째 줄부터 N번째 줄까지 i번째 점의 위치 x, y들이 주어짐
+        // y가 증가하는 순으로 정렬하는데, y가 같으면 x좌표 증가하는 순으로 정렬
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        int n = Integer.parseInt(br.readLine());
+        int[][] arr = new int[n][2];
+
+        for (int i=0; i<n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int x = Integer.parseInt(st.nextToken());
+            int y = Integer.parseInt(st.nextToken());
+            arr[i][0] = x;
+            arr[i][1] = y;
+        }
+
+        Arrays.sort(arr, (a,b) -> {
+            if (a[1] == b[1]) {
+                return Integer.compare(a[0], b[0]);
+            }
+            return Integer.compare(a[1], b[1]);
+        });
+
+        for (int i=0; i<n; i++) {
+            sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
+        }
+
+        System.out.println(sb);
     }
 }
