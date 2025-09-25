@@ -127,5 +127,33 @@ public class Sort {
 
         // System.out.println(sb);
 
+
+        // 1427
+        // 첫째줄에 N(1,000,000,000 작거나 같은 자연수) 입력
+        // 각 자리수를 내림차순으로 정렬한 수 출력
+        // 1. 문자열로 받은 후, 문자별로 분리 -> int로 변환
+        // 배열로 집어 넣은 후 정렬 하고 거꾸로 출력
+        // int num = n.charAt(i) - '0';로 int 변환 가능
+        // .trim() 띄어쓰기, 탭, 개행문자 등을 제거해서 받음
+        // sb.toString을 하던, sb를 하던 sb안에 toString()을 오버라이딩 함
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+
+        // String n = br.readLine();
+        // int[] arr = new int[n.length()];
+
+        // for (int i=0; i < n.length(); i++ ) {
+        //     int num = n.charAt(i) - '0';
+        //     arr[i] = num;
+        // }
+
+        // Arrays.sort(arr);
+
+        // for (int i=arr.length-1; i >= 0; i--) {
+        //     sb.append(arr[i]);
+        // }
+
+        // System.out.println(sb);
+
     }
 }
