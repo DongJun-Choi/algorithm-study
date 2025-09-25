@@ -155,5 +155,42 @@ public class Sort {
 
         // System.out.println(sb);
 
+
+        // 11650
+        // 2차원 평면 위의 점의 개수 N이 첫째줄에 입력
+        // 둘째 줄부터 N번째 줄까지 i번째 점의 위치 x, y들이 주어짐
+        // x가 증가하는 순으로 정렬하는데, x가 같으면 y좌표 증가하는 순으로 정렬
+        // n을 입력 받기, for문으로 배열에 [x, y]으로 값 저장
+        // Arrays.sort를 돌리고 결과에 따라서 진행해볼 예정 
+        // == 2차원 배열은 첫번째 원소만 보고 정렬, 하지만 2번째 원소는 안봄 따로 지정할 필요 있음 
+        // Arrays.sort(array, comparator);에서 comparator는 정렬 기준을 정의하는 함수
+        // Integer.compare(a, b)는 a b비교해서 a가 작으면 음수, 크면 양수, 같으면 0 반환
+
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+
+        // int n = Integer.parseInt(br.readLine());
+        // int[][] arr = new int[n][2];
+
+        // for (int i=0; i<n; i++) {
+        //     StringTokenizer st = new StringTokenizer(br.readLine());
+        //     int x = Integer.parseInt(st.nextToken());
+        //     int y = Integer.parseInt(st.nextToken());
+        //     arr[i][0] = x;
+        //     arr[i][1] = y;
+        // }
+
+        // Arrays.sort(arr, (a,b) -> {
+        //     if (a[0] == b[0]) {
+        //         return Integer.compare(a[1], b[1]);
+        //     }
+        //     return Integer.compare(a[0], b[0]);
+        // });
+
+        // for (int i=0; i<n; i++) {
+        //     sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
+        // }
+
+        // System.out.println(sb);
     }
 }
