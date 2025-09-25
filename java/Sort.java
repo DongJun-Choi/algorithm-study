@@ -1,5 +1,7 @@
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Sort {
@@ -198,31 +200,68 @@ public class Sort {
         // 2차원 평면 위의 점의 개수 N이 첫째줄에 입력
         // 둘째 줄부터 N번째 줄까지 i번째 점의 위치 x, y들이 주어짐
         // y가 증가하는 순으로 정렬하는데, y가 같으면 x좌표 증가하는 순으로 정렬
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+
+        // int n = Integer.parseInt(br.readLine());
+        // int[][] arr = new int[n][2];
+
+        // for (int i=0; i<n; i++) {
+        //     StringTokenizer st = new StringTokenizer(br.readLine());
+        //     int x = Integer.parseInt(st.nextToken());
+        //     int y = Integer.parseInt(st.nextToken());
+        //     arr[i][0] = x;
+        //     arr[i][1] = y;
+        // }
+
+        // Arrays.sort(arr, (a,b) -> {
+        //     if (a[1] == b[1]) {
+        //         return Integer.compare(a[0], b[0]);
+        //     }
+        //     return Integer.compare(a[1], b[1]);
+        // });
+
+        // for (int i=0; i<n; i++) {
+        //     sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
+        // }
+
+        // System.out.println(sb);
+
+
+        // 1181
+        // 알파벳 소문자로 이루어진 단어 수 N이 첫줄에 입력
+        // 둘째줄부터 N번째 줄까지 단어 한개씩 입력
+        // 1번째 정렬 조건 길이가 짧은 것부터
+        // 2번째 길이가 같으면 사전 순으로.(알파벳 순서 순)
+        // 입력 받고 비교를 해야하는데, 직접 처리 vs 함수 사용?
+        // 중복처리도 해야함
+        // Arrays.sort를 사용하여 정렬 조건 바꾸기
+        // compareTo를 가지고 단어 전부 사전순으로 비교
+        // 중복 제거 방법 : Set은 중복을 허용하지 않는 자료구조
+        // Set<String> set = new HashSet<>(Arrays.asList(arr));
+        // String[] uniqueArr = set.toArray(new String[0]);
+        
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-
+        
         int n = Integer.parseInt(br.readLine());
-        int[][] arr = new int[n][2];
+        Set<String> set = new HashSet<>();
 
         for (int i=0; i<n; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-            arr[i][0] = x;
-            arr[i][1] = y;
+            set.add(br.readLine());
         }
+        String[] arr = set.toArray(new String[0]);
 
-        Arrays.sort(arr, (a,b) -> {
-            if (a[1] == b[1]) {
-                return Integer.compare(a[0], b[0]);
+        Arrays.sort(arr, (a, b) -> {
+            if (a.length() == b.length()) {
+                return a.compareTo(b);
             }
-            return Integer.compare(a[1], b[1]);
+            return Integer.compare(a.length(), b.length());
         });
 
-        for (int i=0; i<n; i++) {
-            sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
+        for (String s : arr) {
+            sb.append(s).append("\n");
         }
-
         System.out.println(sb);
     }
 }
