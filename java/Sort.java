@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -240,28 +242,89 @@ public class Sort {
         // 중복 제거 방법 : Set은 중복을 허용하지 않는 자료구조
         // Set<String> set = new HashSet<>(Arrays.asList(arr));
         // String[] uniqueArr = set.toArray(new String[0]);
+
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
         
+        // int n = Integer.parseInt(br.readLine());
+        // Set<String> set = new HashSet<>();
+
+        // for (int i=0; i<n; i++) {
+        //     set.add(br.readLine());
+        // }
+        // String[] arr = set.toArray(new String[0]);
+
+        // Arrays.sort(arr, (a, b) -> {
+        //     if (a.length() == b.length()) {
+        //         return a.compareTo(b);
+        //     }
+        //     return Integer.compare(a.length(), b.length());
+        // });
+
+        // for (String s : arr) {
+        //     sb.append(s).append("\n");
+        // }
+        
+        // System.out.println(sb);
+
+
+        // 18870
+        // 좌표 수 N 첫줄 입력
+        // 둘째 줄에 공백 한 칸으로 구분된 X1, X2, ...XN 입력
+        // 한줄에 X'1, X'2, ...X'N 출력
+        // 좌표 압축이 뭘까? 
+        // 바로 값이 들어오면 최솟값, 최댓값을 해놓고 최솟값은 0
+        // 최솟값보다 크면 1, 그 값보다 크면 2 이런식으로 되겠다.
+        // 첫번째 값은 0으로 하고
+        // 만약 첫번째 값보다 크면? 1
+        // 다음 수가 0보다 크고 1보다 작으면? 1로 하고 1을 2로 올리는 작업이 필요
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        
+
         int n = Integer.parseInt(br.readLine());
-        Set<String> set = new HashSet<>();
+        Integer[] arr = new Integer[n];
 
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i=0; i<n; i++) {
-            set.add(br.readLine());
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-        String[] arr = set.toArray(new String[0]);
+        
+        // Set<Integer> set = new HashSet<>(Arrays.asList(arr));
+        // Integer[] sortArr = set.toArray(new Integer[0]);
+        // Arrays.sort(sortArr);
 
-        Arrays.sort(arr, (a, b) -> {
-            if (a.length() == b.length()) {
-                return a.compareTo(b);
-            }
-            return Integer.compare(a.length(), b.length());
-        });
+        // for (int i = 0; i < n; i++) {
+        //     int value = arr[i];
+        //     int index = 0;
 
-        for (String s : arr) {
-            sb.append(s).append("\n");
+        //     for (int j = 0; j < sortArr.length; j++) {
+        //         if (sortArr[j].equals(value)) {
+        //             index = j;
+        //             break;
+        //         }
+        //     }
+
+        //     sb.append(index).append(" ");
+        // }
+
+        // 중복 제거 + 정렬
+        Set<Integer> set = new HashSet<>();
+        for (int num : arr) set.add(num);
+
+        Integer[] sortArr = set.toArray(new Integer[0]);
+        Arrays.sort(sortArr);
+
+        // 값 -> 인덱스 Map 생성
+        Map<Integer, Integer> indexMap = new HashMap<>();
+        for (int i = 0; i < sortArr.length; i++) {
+            indexMap.put(sortArr[i], i);
         }
+
+        // 좌표 압축
+        for (int num : arr) {
+            sb.append(indexMap.get(num)).append(" ");
+        }
+
         System.out.println(sb);
     }
 }
