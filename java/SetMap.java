@@ -11,30 +11,58 @@ public class SetMap {
         // 상근의 카드 숫자들을 기억하고, 
         // 비교해야하는 카드의 숫자를 보고 같으면 1, 아니면 0을 출력
         // set은 중복을 허용하지 않는 집합, 이면서 contains()
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // int n = Integer.parseInt(br.readLine());
+        // Set<Integer> set = new HashSet<>();
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // for (int i=0; i<n; i++) {
+        //     int a = Integer.parseInt(st.nextToken());
+        //     set.add(a);
+        // }
+
+        // int m = Integer.parseInt(br.readLine());
+        // StringBuilder sb = new StringBuilder();
+
+        // st = new StringTokenizer(br.readLine());
+        // for (int i=0; i<m; i++) {
+        //     int b = Integer.parseInt(st.nextToken());
+        //     if (set.contains(b)) {
+        //         sb.append(1).append(" ");
+        //     } else {
+        //         sb.append(0).append(" ");
+        //     }
+        // }
+
+        // System.out.println(sb);
+
+
+        // 14425
+        // 문자열 개수 N과 또 다른 문자열 개수 M이 첫줄에 입력
+        // 둘째줄부터 N번째줄까지는 하나의 배열 s로 저장
+        // N+1번째 줄부터 M까지는 s에 있는 문자열인지 체크 후 있는 문자열이면 count++
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int n = Integer.parseInt(br.readLine());
-        Set<Integer> set = new HashSet<>();
-
         StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        Set<String> set = new HashSet<>();
+        int count = 0;
+
         for (int i=0; i<n; i++) {
-            int a = Integer.parseInt(st.nextToken());
+            String a = br.readLine();
             set.add(a);
         }
 
-        int m = Integer.parseInt(br.readLine());
-        StringBuilder sb = new StringBuilder();
-
-        st = new StringTokenizer(br.readLine());
         for (int i=0; i<m; i++) {
-            int b = Integer.parseInt(st.nextToken());
-            if (set.contains(b)) {
-                sb.append(1).append(" ");
-            } else {
-                sb.append(0).append(" ");
+            String b = br.readLine();
+            if(set.contains(b)) {
+                count++;
             }
         }
 
-        System.out.println(sb);
+        System.out.println(count);
+
     }
 }
