@@ -149,34 +149,68 @@ public class SetMap {
         // 넷째줄에 입력되어있는 값들을 보고 각 값이 몇개 존재하는지 판단 후 출력
         // 배열을 20,000,000을 하는 건 비효율적일 것 같고
         // Map을 이용해서 (Integer, Integer)로 하여, 새롭게 들어오면 value 값 증가
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));        int n = Integer.parseInt(br.readLine());
-        Map<Integer, Integer> map = new HashMap<>();
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));        
+        // int n = Integer.parseInt(br.readLine());
+        // Map<Integer, Integer> map = new HashMap<>();
         
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // for (int i=0;i<n;i++) {
+        //     int num = Integer.parseInt(st.nextToken());
+        //     if (map.containsKey(num)) {
+        //         int value = map.get(num);
+        //         map.put(num, value+1);
+        //     } else {
+        //         map.put(num, 1);
+        //     }
+        // }
+
+        // StringBuilder sb = new StringBuilder();
+        // int m = Integer.parseInt(br.readLine());
+        // st = new StringTokenizer(br.readLine());
+        // for (int i=0;i<m;i++) {
+        //     int num = Integer.parseInt(st.nextToken());
+        //     if (map.containsKey(num)) {
+        //         int value = map.get(num);
+        //         sb.append(value).append(" ");
+        //     } else {
+        //         sb.append(0).append(" ");
+        //     }
+        // }
+
+        // System.out.println(sb);
+
+
+        // 1764
+        // 첫째줄에는 듣도 못한 사람의 수 N, 보도 못한 사람의 수 M 입력
+        // 둘째줄부터 N개의 줄까지 듣도 못한 사람 이름과 N+2번째 줄부터 보도 못한 사람의 이름이 순서대로 입력
+        // 이름은 띄어쓰기 없이, 알파벳 소문자로만 길이는 20이하
+        // 듣보잡의 수와 그 명단을 사전 순으로 출력(듣도 못한 + 보도 못한)
+        // 사전순은 TreeSet으로 하면 사전순으로 자동 정렬
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        Set<String> set = new TreeSet<>();
+        Set<String> set1 = new HashSet<>();
+
         StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+
         for (int i=0;i<n;i++) {
-            int num = Integer.parseInt(st.nextToken());
-            if (map.containsKey(num)) {
-                int value = map.get(num);
-                map.put(num, value+1);
-            } else {
-                map.put(num, 1);
+            String name = br.readLine();
+            set1.add(name);
+        }
+        for (int i=0; i<m; i++) {
+            String name = br.readLine();
+            if (set1.contains(name)) {
+                set.add(name);
             }
         }
-
-        StringBuilder sb = new StringBuilder();
-        int m = Integer.parseInt(br.readLine());
-        st = new StringTokenizer(br.readLine());
-        for (int i=0;i<m;i++) {
-            int num = Integer.parseInt(st.nextToken());
-            if (map.containsKey(num)) {
-                int value = map.get(num);
-                sb.append(value).append(" ");
-            } else {
-                sb.append(0).append(" ");
-            }
+        sb.append(set.size()).append('\n');
+        for (String i : set) {
+            sb.append(i).append("\n");
         }
 
         System.out.println(sb);
-
+        
     }
 }
