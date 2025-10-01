@@ -109,32 +109,70 @@ public class SetMap {
         // Map은 Set과 같이 중복 허락하지 않지만 key - value 쌍으로 저장을 함.
         // 빨리 찾기 위해 O(1) 시간 복잡도 사용해야함.
         // 그러기 위해서 String, Integer쌍과 Integer, String쌍 두개를 해서 각 값마다 맞게 빨리 가져와야함
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        Map<String, Integer> map = new HashMap<>();
-        List<String> list = new ArrayList<>();
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+        // int m = Integer.parseInt(st.nextToken());
+        // Map<String, Integer> map = new HashMap<>();
+        // List<String> list = new ArrayList<>();
 
-        for (int i=1; i<=n; i++) {
-            String name = br.readLine();
-            map.put(name, i);
-            list.add(name);
-        }
+        // for (int i=1; i<=n; i++) {
+        //     String name = br.readLine();
+        //     map.put(name, i);
+        //     list.add(name);
+        // }
         
-        for (int i=0; i<m; i++) {
-            String name = br.readLine();
-            char check = name.charAt(0);
+        // for (int i=0; i<m; i++) {
+        //     String name = br.readLine();
+        //     char check = name.charAt(0);
 
-            if (Character.isLetter(check)) {
-                int index = map.get(name);
-                sb.append(index).append("\n");
+        //     if (Character.isLetter(check)) {
+        //         int index = map.get(name);
+        //         sb.append(index).append("\n");
+        //     } else {
+        //         int number = Integer.parseInt(name);
+        //         String value = list.get(number-1);
+        //         sb.append(value).append("\n");
+        //     }
+        // }
+
+        // System.out.println(sb);
+
+
+        // 10816
+        // 첫째줄에는 상근이의 가지고 있는 숫자 카드 개수 N입력
+        // 둘째줄에는 숫자카드에 적혀있는 정수 주어짐, 공백기준으로(-10,000,000~10,000,000)
+        // 셋째줄에는 M 입력
+        // 넷째줄에는 M개의 정수 입력
+        // 넷째줄에 입력되어있는 값들을 보고 각 값이 몇개 존재하는지 판단 후 출력
+        // 배열을 20,000,000을 하는 건 비효율적일 것 같고
+        // Map을 이용해서 (Integer, Integer)로 하여, 새롭게 들어오면 value 값 증가
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));        int n = Integer.parseInt(br.readLine());
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i=0;i<n;i++) {
+            int num = Integer.parseInt(st.nextToken());
+            if (map.containsKey(num)) {
+                int value = map.get(num);
+                map.put(num, value+1);
             } else {
-                int number = Integer.parseInt(name);
-                String value = list.get(number-1);
-                sb.append(value).append("\n");
+                map.put(num, 1);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int m = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        for (int i=0;i<m;i++) {
+            int num = Integer.parseInt(st.nextToken());
+            if (map.containsKey(num)) {
+                int value = map.get(num);
+                sb.append(value).append(" ");
+            } else {
+                sb.append(0).append(" ");
             }
         }
 
