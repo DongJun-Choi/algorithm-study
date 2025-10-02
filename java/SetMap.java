@@ -220,34 +220,58 @@ public class SetMap {
         // A-B => A에 B가 가지고 있는 원소가 있다면 빼기,
         // B-A => B에 A가 가지고 있는 원소가 있다면 빼기,
         // 이렇게 나온 원소들의 값의 수를 출력
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int numA = Integer.parseInt(st.nextToken());
+        // int numB = Integer.parseInt(st.nextToken());
+        // Set<Integer> setA = new HashSet<>();
+        // Set<Integer> setB = new HashSet<>();
+        // List<Integer> list = new ArrayList<>();
+
+        // st = new StringTokenizer(br.readLine());
+        // for (int i=0; i<numA; i++) {
+        //     int num = Integer.parseInt(st.nextToken());
+        //     setA.add(num);
+        // }
+
+        // st = new StringTokenizer(br.readLine());
+        // for (int i=0; i<numB; i++) {
+        //     int num = Integer.parseInt(st.nextToken());
+        //     setB.add(num);
+        // }
+
+        // for (int i : setA) {
+        //     if (!setB.contains(i)) list.add(i);
+        // }
+        // for (int i : setB) {
+        //     if (!setA.contains(i)) list.add(i);
+        // }
+        
+        // System.out.println(list.size());
+
+
+        // 11478
+        // 첫째줄에 문자열 S 입력, 소문자로만 이루어지고 길이는 1,000이하
+        // S의 서로 다른 부분 문자열 개수를 출력
+        // ex) ababc = a,b,a,b,c, ab,ba,ab,bc, aba,bab,abc, abab,babc, ababc => 15개지만
+        // a,b,c, ab,ba,bc, aba,bab,abc, abab,babc, ababc => 12개
+        // 저렇게 나눠지게 하고 set에 넣어서 size만 구하는 방법으로 해결?
+        // 저렇게 나눠지게 하는 방법은? 한글자씩은 무조건 가능, N자리라면 N자리수까지 해야할텐데
+        // s.substring(i, j)을 통해 문자열을 조절 가능
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int numA = Integer.parseInt(st.nextToken());
-        int numB = Integer.parseInt(st.nextToken());
-        Set<Integer> setA = new HashSet<>();
-        Set<Integer> setB = new HashSet<>();
-        List<Integer> list = new ArrayList<>();
+        String s = br.readLine();
+        Set<String> set = new HashSet<>();
 
-        st = new StringTokenizer(br.readLine());
-        for (int i=0; i<numA; i++) {
-            int num = Integer.parseInt(st.nextToken());
-            setA.add(num);
+        for (int len = 1; len <= s.length(); len++) {
+            for (int i = 0; i <= s.length() - len; i++) {
+                String sub = s.substring(i, i + len);
+                set.add(sub);
+            }
         }
 
-        st = new StringTokenizer(br.readLine());
-        for (int i=0; i<numB; i++) {
-            int num = Integer.parseInt(st.nextToken());
-            setB.add(num);
-        }
+        System.out.println(set.size());
 
-        for (int i : setA) {
-            if (!setB.contains(i)) list.add(i);
-        }
-        for (int i : setB) {
-            if (!setA.contains(i)) list.add(i);
-        }
-        
-        System.out.println(list.size());
     }
 }
