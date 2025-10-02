@@ -186,31 +186,68 @@ public class SetMap {
         // 이름은 띄어쓰기 없이, 알파벳 소문자로만 길이는 20이하
         // 듣보잡의 수와 그 명단을 사전 순으로 출력(듣도 못한 + 보도 못한)
         // 사전순은 TreeSet으로 하면 사전순으로 자동 정렬
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+        // Set<String> set = new TreeSet<>();
+        // Set<String> set1 = new HashSet<>();
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+        // int m = Integer.parseInt(st.nextToken());
+
+        // for (int i=0;i<n;i++) {
+        //     String name = br.readLine();
+        //     set1.add(name);
+        // }
+        // for (int i=0; i<m; i++) {
+        //     String name = br.readLine();
+        //     if (set1.contains(name)) {
+        //         set.add(name);
+        //     }
+        // }
+        // sb.append(set.size()).append('\n');
+        // for (String i : set) {
+        //     sb.append(i).append("\n");
+        // }
+
+        // System.out.println(sb);
+
+
+        // 1269
+        // 첫째 줄에는 집합 A의 원소의 개수, 집합 B의 원소의 개수가 빈칸 사이에 두고 입력
+        // 둘째줄에는 집합 A의 모든 원소가 입력
+        // 셋째줄에는 집합 B의 모든 원소가 입력
+        // A-B => A에 B가 가지고 있는 원소가 있다면 빼기,
+        // B-A => B에 A가 가지고 있는 원소가 있다면 빼기,
+        // 이렇게 나온 원소들의 값의 수를 출력
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        Set<String> set = new TreeSet<>();
-        Set<String> set1 = new HashSet<>();
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        int numA = Integer.parseInt(st.nextToken());
+        int numB = Integer.parseInt(st.nextToken());
+        Set<Integer> setA = new HashSet<>();
+        Set<Integer> setB = new HashSet<>();
+        List<Integer> list = new ArrayList<>();
 
-        for (int i=0;i<n;i++) {
-            String name = br.readLine();
-            set1.add(name);
-        }
-        for (int i=0; i<m; i++) {
-            String name = br.readLine();
-            if (set1.contains(name)) {
-                set.add(name);
-            }
-        }
-        sb.append(set.size()).append('\n');
-        for (String i : set) {
-            sb.append(i).append("\n");
+        st = new StringTokenizer(br.readLine());
+        for (int i=0; i<numA; i++) {
+            int num = Integer.parseInt(st.nextToken());
+            setA.add(num);
         }
 
-        System.out.println(sb);
+        st = new StringTokenizer(br.readLine());
+        for (int i=0; i<numB; i++) {
+            int num = Integer.parseInt(st.nextToken());
+            setB.add(num);
+        }
+
+        for (int i : setA) {
+            if (!setB.contains(i)) list.add(i);
+        }
+        for (int i : setB) {
+            if (!setA.contains(i)) list.add(i);
+        }
         
+        System.out.println(list.size());
     }
 }
