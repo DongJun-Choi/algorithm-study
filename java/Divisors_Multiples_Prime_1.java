@@ -48,7 +48,6 @@ public class Divisors_Multiples_Prime_1 {
 
         // long x = a;
         // long y = b;
-
         // while (y != 0) {
         //     long temp = x%y;
         //     x = y;
@@ -57,5 +56,35 @@ public class Divisors_Multiples_Prime_1 {
 
         // System.out.println(a/ x *b);
 
+
+        // 1735
+        // 첫째줄과 둘째줄에 분수의 분자와 분모를 뜻하는 2개의 자연수가 순서대로 입력
+        // 첫째줄에 구하고자 하는 기약 분수의 분자와 분모를 뜻하는 2개의 자연수 순서대로 출력
+        // 즉 2개의 분수를 입력받고 2개의 분수의 합 출력
+        // 하지만 약분이 되서는 안됨.
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a1 = Integer.parseInt(st.nextToken());
+        int b1 = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        int a2 = Integer.parseInt(st.nextToken());
+        int b2 = Integer.parseInt(st.nextToken());
+        
+        int a = a1*b2+a2*b1;
+        int b = b1*b2;
+
+        int x = a;
+        int y = b;
+        while (y != 0) {
+            int temp = x%y;
+            x = y;
+            y = temp;
+        }
+
+        a = a/x;
+        b = b/x;
+
+        System.out.println(a+" "+b);
     }
 }
