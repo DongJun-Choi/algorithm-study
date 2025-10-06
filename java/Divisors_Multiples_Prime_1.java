@@ -97,26 +97,54 @@ public class Divisors_Multiples_Prime_1 {
         // 사이의 거리가 가장 최소인것을 구하고, 그걸로 안될 경우에는 숫자를 줄여가며 가능한지 따지기
         // 너무 노가다, 두 가로수 사이 거리들의 최대 공약수를 구하고 그 간격으로 하면 수학적으로 가능
 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // int n = Integer.parseInt(br.readLine());
+        // int[] arr = new int[n];
+
+        // for (int i=0; i<n; i++) {
+        //     arr[i] = Integer.parseInt(br.readLine());
+        // }
+
+        // int[] diff = new int[n-1];
+        // for (int i=0; i<n-1; i++) {
+        //     diff[i] = arr[i+1] - arr[i];
+        // }
+
+        // int gcd = diff[0];
+        // for (int i = 1; i < diff.length; i++) {
+        //     gcd = gcd(gcd, diff[i]);
+        // }
+
+        // int total = (arr[n - 1] - arr[0]) / gcd + 1;
+        // System.out.println(total - n); 
+
+
+        // 4134
+        // 첫째줄에 테스트 케이수 수 t 입력
+        // 둘째줄부터 t개의 줄에는 정수 N 입력
+        // 각 테스트 케이스의 n보다 크거나 같은 소수 중 가장 작은 소수 한줄씩 출력
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        int[] arr = new int[n];
 
-        for (int i=0; i<n; i++) {
-            arr[i] = Integer.parseInt(br.readLine());
+        int t = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < t; i++) {
+            long n = Long.parseLong(br.readLine());
+            while (!isPrime(n)) {
+                n++;
+            }
+            sb.append(n).append("\n");
         }
 
-        int[] diff = new int[n-1];
-        for (int i=0; i<n-1; i++) {
-            diff[i] = arr[i+1] - arr[i];
-        }
+        System.out.println(sb);
+    }
 
-        int gcd = diff[0];
-        for (int i = 1; i < diff.length; i++) {
-            gcd = gcd(gcd, diff[i]);
+    private static boolean isPrime(long num) {
+        if (num < 2) return false;
+        for (long i = 2; i * i <= num; i++) {
+            if (num % i == 0) return false;
         }
-
-        int total = (arr[n - 1] - arr[0]) / gcd + 1;
-        System.out.println(total - n); 
+        return true;
     }
 
     private static int gcd(int a, int b) {
