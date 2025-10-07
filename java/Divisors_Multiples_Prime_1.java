@@ -123,17 +123,36 @@ public class Divisors_Multiples_Prime_1 {
         // 첫째줄에 테스트 케이수 수 t 입력
         // 둘째줄부터 t개의 줄에는 정수 N 입력
         // 각 테스트 케이스의 n보다 크거나 같은 소수 중 가장 작은 소수 한줄씩 출력
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        // int t = Integer.parseInt(br.readLine());
+        // StringBuilder sb = new StringBuilder();
+
+        // for (int i = 0; i < t; i++) {
+        //     long n = Long.parseLong(br.readLine());
+        //     while (!isPrime(n)) {
+        //         n++;
+        //     }
+        //     sb.append(n).append("\n");
+        // }
+
+        // System.out.println(sb);
+
+
+        // 1929
+        // 첫째줄에 자연수 m, n 빈칸 두고 입력
+        // 한줄에 하나씩 증가하는 순서대로 소수 출력
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-        int t = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
         StringBuilder sb = new StringBuilder();
+        int m = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i < t; i++) {
-            long n = Long.parseLong(br.readLine());
-            while (!isPrime(n)) {
-                n++;
+        for (int i=m; i<=n; i++) {
+            if (isPrime(i)) {
+                sb.append(i).append("\n");
             }
-            sb.append(n).append("\n");
         }
 
         System.out.println(sb);
