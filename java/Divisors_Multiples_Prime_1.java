@@ -143,24 +143,58 @@ public class Divisors_Multiples_Prime_1 {
         // 첫째줄에 자연수 m, n 빈칸 두고 입력
         // 한줄에 하나씩 증가하는 순서대로 소수 출력
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        StringBuilder sb = new StringBuilder();
-        int m = Integer.parseInt(st.nextToken());
-        int n = Integer.parseInt(st.nextToken());
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // StringBuilder sb = new StringBuilder();
+        // int m = Integer.parseInt(st.nextToken());
+        // int n = Integer.parseInt(st.nextToken());
 
-        for (int i=m; i<=n; i++) {
-            if (isPrime(i)) {
-                sb.append(i).append("\n");
-            }
+        // for (int i=m; i<=n; i++) {
+        //     if (isPrime(i)) {
+        //         sb.append(i).append("\n");
+        //     }
+        // }
+        // System.out.println(sb);
+
+
+        // 4948
+        // 여러개의 테스트 케이스가 존재하는데 한줄에 한 정수가 입력
+        // 마지막 입력에는 0이 입력
+        // 각 테스트 케이스를 보고 n보다 크고 2n보다 작거나 같은 소수의 개수 출력
+        // 1929의 다른 사람 코드를 보니 에라토스테네스의 체를 사용하니 속도가 빨라진것을 확인 사용해봄
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        int[] arr = new int[123456*2+1];
+        for (int i=2; i<=123456*2; i++) arr[i] = i;
+        for (int i=2; i<=123456*2; i++) {
+            if (arr[i] == 0) continue;
+            for (int j=i*2; j<=123456*2; j+=i) arr[j] = 0;
         }
 
+        while (true) {
+            int n = Integer.parseInt(br.readLine());
+            if (n == 0) break;
+            int count = 0;
+            
+            for (int i=n+1; i<=n*2; i++) {
+                if (arr[i] != 0) count++;
+            }
+
+            sb.append(count).append("\n");
+        }
         System.out.println(sb);
+
     }
 
+    // 소수인지 확인하는 함수
+    // 최적화를 위해, 제곱근으로 확인, 짝수 제외
     private static boolean isPrime(long num) {
         if (num < 2) return false;
-        for (long i = 2; i * i <= num; i++) {
+        if (num == 2) return true;
+        if (num % 2 == 0) return false;
+        for (long i = 3; i * i <= num; i++) {
             if (num % i == 0) return false;
         }
         return true;
