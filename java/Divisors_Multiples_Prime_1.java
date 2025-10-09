@@ -163,23 +163,53 @@ public class Divisors_Multiples_Prime_1 {
         // 각 테스트 케이스를 보고 n보다 크고 2n보다 작거나 같은 소수의 개수 출력
         // 1929의 다른 사람 코드를 보니 에라토스테네스의 체를 사용하니 속도가 빨라진것을 확인 사용해봄
 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+        // int[] arr = new int[123456*2+1];
+        // for (int i=2; i<=123456*2; i++) arr[i] = i;
+        // for (int i=2; i<=123456*2; i++) {
+        //     if (arr[i] == 0) continue;
+        //     for (int j=i*2; j<=123456*2; j+=i) arr[j] = 0;
+        // }
+
+        // while (true) {
+        //     int n = Integer.parseInt(br.readLine());
+        //     if (n == 0) break;
+        //     int count = 0;       
+        //     for (int i=n+1; i<=n*2; i++) {
+        //         if (arr[i] != 0) count++;
+        //     }
+        //     sb.append(count).append("\n");
+        // }
+        // System.out.println(sb);
+
+
+        // 17103
+        // 첫줄에는 테스트 케이스의 개수 T 입력
+        // 각 테스트 케이스는 한줄에 정수이면서 짝수인 N 입력, 2 < N ≤ 1,000,000
+        // 각각의 테스트 케이스마다 골드바흐 파티션의 수 출력
+        // 두 소수의 합으로 정수 N을 나타낼수 있으면 골드바흐 파티션 수
+        // 어떻게 구할까? N의 최댓값까지 소수를 구하고, 
+        // 그 소수를 N에 빼고 남은 값이 소수인지 확인하기?
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-
-        int[] arr = new int[123456*2+1];
-        for (int i=2; i<=123456*2; i++) arr[i] = i;
-        for (int i=2; i<=123456*2; i++) {
+        int t = Integer.parseInt(br.readLine());
+        int[] arr = new int[1000001];
+        for (int i=2; i<=1000000; i++) arr[i] = i;
+        for (int i=2; i*i<=1000000; i++) {
             if (arr[i] == 0) continue;
-            for (int j=i*2; j<=123456*2; j+=i) arr[j] = 0;
+            for (int j=i*2; j<=1000000; j+=i) arr[j] = 0;
         }
 
-        while (true) {
+        for (int x = 0; x < t; x++) {
             int n = Integer.parseInt(br.readLine());
-            if (n == 0) break;
             int count = 0;
-            
-            for (int i=n+1; i<=n*2; i++) {
-                if (arr[i] != 0) count++;
+
+            for (int i = 2; i <= n / 2; i++) {
+                if (arr[i] != 0 && arr[n - i] != 0) {
+                    count++;
+                }
             }
 
             sb.append(count).append("\n");
