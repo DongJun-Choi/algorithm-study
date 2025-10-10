@@ -192,29 +192,56 @@ public class Divisors_Multiples_Prime_1 {
         // 어떻게 구할까? N의 최댓값까지 소수를 구하고, 
         // 그 소수를 N에 빼고 남은 값이 소수인지 확인하기?
 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+        // int t = Integer.parseInt(br.readLine());
+        // int[] arr = new int[1000001];
+        // for (int i=2; i<=1000000; i++) arr[i] = i;
+        // for (int i=2; i*i<=1000000; i++) {
+        //     if (arr[i] == 0) continue;
+        //     for (int j=i*2; j<=1000000; j+=i) arr[j] = 0;
+        // }
+
+        // for (int x = 0; x < t; x++) {
+        //     int n = Integer.parseInt(br.readLine());
+        //     int count = 0;
+        //     for (int i = 2; i <= n / 2; i++) {
+        //         if (arr[i] != 0 && arr[n - i] != 0) {
+        //             count++;
+        //         }
+        //     }
+
+        //     sb.append(count).append("\n");
+        // }
+        // System.out.println(sb);
+
+
+        // 13909
+        // 첫번째 줄에 창문의 개수와 사람의 수 N이 입력, 1 ≤ N ≤ 2,100,000,000
+        // N번째 사람까지 진행한 후 열려있는 창문의 개수 출력
+        // 처음에 닫혀있지만 1명이 지나가면 모두 열림, 배열로 만든 후에, N이 들어올때마다 값을 참 거짓으로 값 갱신 시키기
+        // 시간 초과, 원인은? n이 커질수록 메모리 및 시간이 많이 걸림
+        // 9까지 해본 결과, 결국 1, 4, 9...가 남는다.
+        // 1의 제곱, 2의 제곱, 3의 제곱이 남고, 다른 수들은 무조건 닫혀있음
+        // n의 제곱근의 정수부분만 구하면 자동으로 열린 창문이 나옴
+        // 제곱근 구하는 함수 Math.squt(double);
+        
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int t = Integer.parseInt(br.readLine());
-        int[] arr = new int[1000001];
-        for (int i=2; i<=1000000; i++) arr[i] = i;
-        for (int i=2; i*i<=1000000; i++) {
-            if (arr[i] == 0) continue;
-            for (int j=i*2; j<=1000000; j+=i) arr[j] = 0;
-        }
+        long n = Long.parseLong(br.readLine());
+        System.out.println((long) Math.sqrt(n));
 
-        for (int x = 0; x < t; x++) {
-            int n = Integer.parseInt(br.readLine());
-            int count = 0;
+        // 결과값 확인을 위한 코드
+        // StringBuilder sb = new StringBuilder();
+        // boolean[] arr = new boolean[(int)n + 1];
+        // for (long i = 1; i <= n; i++) {
+        //     for (long j = i; j <= n; j += i) {
+        //         arr[(int)j] = !arr[(int)j];
+        //     }
+        // }
+        // for (long i = 1; i <= n; i++) {
+        //     if (arr[(int)i]) sb.append(i+" ");
+        // }
 
-            for (int i = 2; i <= n / 2; i++) {
-                if (arr[i] != 0 && arr[n - i] != 0) {
-                    count++;
-                }
-            }
-
-            sb.append(count).append("\n");
-        }
-        System.out.println(sb);
 
     }
 
