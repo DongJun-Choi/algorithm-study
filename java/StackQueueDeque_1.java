@@ -52,25 +52,63 @@ public class StackQueueDeque_1 {
         // 아니면 해당 수 쓰기
         // 최종적으로 적어낸 수의 합 출력
 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // int k = Integer.parseInt(br.readLine());
+        // List<Integer> arr = new ArrayList();
+        // int count = 0;
+
+        // for (int i=0; i<k; i++) {
+        //     int n = Integer.parseInt(br.readLine());
+        //     if (n == 0) {
+        //         arr.remove(arr.size() - 1);
+        //     } else {
+        //         arr.add(n);
+        //     }
+        // }
+
+        // for (int i : arr) {
+        //     count = count + i;
+        // }
+        // System.out.println(count);
+
+
+        // 9012
+        // 첫째줄에는 테스트 데이터 수 T 입력
+        // '(', ')'이 섞여있는 괄호 문자열이 한줄에 한줄씩 입력
+        // VPS면 YES, 아니면 NO 출력
+        // ()의 짝이 맞아야지 VPS
+        // 스택을 만들고 거기에 넣은 후에 꺼내기
+        // 꺼낼때, )의 수는 카운팅하고, (가 나오면 카운팅 -1하기.
+        // 만약 카운팅의 값이 0이 아니면 NO, 0이면 YES
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int k = Integer.parseInt(br.readLine());
-        List<Integer> arr = new ArrayList();
-        int count = 0;
+        StringBuilder sb = new StringBuilder();
+        int t = Integer.parseInt(br.readLine());
+        
+        for (int i = 0; i < t; i++) {
+            String input = br.readLine();
+            Stack<Character> stack = new Stack<>();
+            boolean isVPS = true;
 
-        for (int i=0; i<k; i++) {
-            int n = Integer.parseInt(br.readLine());
-            if (n == 0) {
-                arr.remove(arr.size() - 1);
-            } else {
-                arr.add(n);
+            for (int j = 0; j < input.length(); j++) {
+                char c = input.charAt(j);
+
+                if (c == '(') {
+                    stack.push(c);
+                } else if (c == ')') {
+                    if (stack.isEmpty()) {
+                        isVPS = false;
+                        break;
+                    }
+                    stack.pop();
+                }
             }
-        }
+            if (!stack.isEmpty()) isVPS = false;
 
-        for (int i : arr) {
-            count = count + i;
+            sb.append(isVPS ? "YES" : "NO").append('\n');
         }
+        System.out.println(sb);
 
-        System.out.println(count);
 
     }
 }
