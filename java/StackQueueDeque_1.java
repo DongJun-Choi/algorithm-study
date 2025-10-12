@@ -45,5 +45,32 @@ public class StackQueueDeque_1 {
         // System.out.print(sb);
 
 
+        // 10773
+        // 첫번째 줄에 정수 k 입력, 1 ≤ K ≤ 100,000
+        // 이후 k의 줄에 정수가 하나씩 입력, 0에서 1,000,000 사이의 값
+        // 정수가 "0" 일 경우에는 가장 최근에 쓴 수를 지우기, 0은 지울 수 있는 수가 존재한다는 가정에만 나옴
+        // 아니면 해당 수 쓰기
+        // 최종적으로 적어낸 수의 합 출력
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int k = Integer.parseInt(br.readLine());
+        List<Integer> arr = new ArrayList();
+        int count = 0;
+
+        for (int i=0; i<k; i++) {
+            int n = Integer.parseInt(br.readLine());
+            if (n == 0) {
+                arr.remove(arr.size() - 1);
+            } else {
+                arr.add(n);
+            }
+        }
+
+        for (int i : arr) {
+            count = count + i;
+        }
+
+        System.out.println(count);
+
     }
 }
