@@ -81,34 +81,75 @@ public class StackQueueDeque_1 {
         // 꺼낼때, )의 수는 카운팅하고, (가 나오면 카운팅 -1하기.
         // 만약 카운팅의 값이 0이 아니면 NO, 0이면 YES
 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+        // int t = Integer.parseInt(br.readLine());
+        
+        // for (int i = 0; i < t; i++) {
+        //     String input = br.readLine();
+        //     Stack<Character> stack = new Stack<>();
+        //     boolean isVPS = true;
+
+        //     for (int j = 0; j < input.length(); j++) {
+        //         char c = input.charAt(j);
+        //         if (c == '(') {
+        //             stack.push(c);
+        //         } else if (c == ')') {
+        //             if (stack.isEmpty()) {
+        //                 isVPS = false;
+        //                 break;
+        //             }
+        //             stack.pop();
+        //         }
+        //     }
+        //     if (!stack.isEmpty()) isVPS = false;
+
+        //     sb.append(isVPS ? "YES" : "NO").append('\n');
+        // }
+        // System.out.println(sb);
+
+
+        //4949
+        // 각 줄마다 문자열이 들어오고 문자열의 마지막은 (.)으로 끝난다.
+        // 입력의 종료 조건은 (.)하나만 들어오는 것.
+        // 각 줄마다 문자열이 균형을 이루고 있으면 "yes"아니면 "no" 출력
+        // '(', ')'과 짝을 이뤄야하고, '[', ']'과 짝을 이뤄야한다.
+        // 각각 다른 스택을 만들고, 진행하기? "([)]"처럼 위배됐을경우 판단하기 힘듬
+        // 같은 스택으로 하고 그 안에서 (냐 [에 따라 판단하기.
+        // 스택의 맨 위에 요소를 꺼내지 않고 확인하는 법 peek()함수
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        int t = Integer.parseInt(br.readLine());
-        
-        for (int i = 0; i < t; i++) {
-            String input = br.readLine();
+
+        while (true) {
+            String a = br.readLine();
+            if (a.equals(".")) break;
             Stack<Character> stack = new Stack<>();
-            boolean isVPS = true;
+            boolean isBalanced = true;
 
-            for (int j = 0; j < input.length(); j++) {
-                char c = input.charAt(j);
-
-                if (c == '(') {
+            for (int j = 0; j < a.length(); j++) {
+                char c = a.charAt(j);
+                if (c == '(' || c == '[') {
                     stack.push(c);
                 } else if (c == ')') {
-                    if (stack.isEmpty()) {
-                        isVPS = false;
+                    if (stack.isEmpty() || stack.peek() != '(') {
+                        isBalanced = false;
+                        break;
+                    }
+                    stack.pop();
+                } else if (c == ']') {
+                    if (stack.isEmpty() || stack.peek() != '[') {
+                        isBalanced = false;
                         break;
                     }
                     stack.pop();
                 }
             }
-            if (!stack.isEmpty()) isVPS = false;
+            if (!stack.isEmpty()) isBalanced = false;
 
-            sb.append(isVPS ? "YES" : "NO").append('\n');
+            sb.append(isBalanced ? "yes" : "no").append('\n');
         }
         System.out.println(sb);
-
 
     }
 }
