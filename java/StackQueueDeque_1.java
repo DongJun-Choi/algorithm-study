@@ -118,38 +118,72 @@ public class StackQueueDeque_1 {
         // 같은 스택으로 하고 그 안에서 (냐 [에 따라 판단하기.
         // 스택의 맨 위에 요소를 꺼내지 않고 확인하는 법 peek()함수
 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringBuilder sb = new StringBuilder();
+
+        // while (true) {
+        //     String a = br.readLine();
+        //     if (a.equals(".")) break;
+        //     Stack<Character> stack = new Stack<>();
+        //     boolean isBalanced = true;
+        //     for (int j = 0; j < a.length(); j++) {
+        //         char c = a.charAt(j);
+        //         if (c == '(' || c == '[') {
+        //             stack.push(c);
+        //         } else if (c == ')') {
+        //             if (stack.isEmpty() || stack.peek() != '(') {
+        //                 isBalanced = false;
+        //                 break;
+        //             }
+        //             stack.pop();
+        //         } else if (c == ']') {
+        //             if (stack.isEmpty() || stack.peek() != '[') {
+        //                 isBalanced = false;
+        //                 break;
+        //             }
+        //             stack.pop();
+        //         }
+        //     }
+        //     if (!stack.isEmpty()) isBalanced = false;
+        //     sb.append(isBalanced ? "yes" : "no").append('\n');
+        // }
+        // System.out.println(sb);
+
+
+        // 12789
+        // 첫째줄에는 승환이 앞에 서있는 학생의 수 N 입력, 1 ≤ N ≤ 1,000,자연수
+        // 다음 줄에는 승환이 앞에 서 있는 학생들의 번호표를 앞에서부터 뒤 순서로 입력
+        // 승환이가 무사히 간식을 받을 수 있으면 "Nice", 아니면 "Sad" 출력
+        // 옆에 공간은 스택, 스택에 가장 최근에 들어간 수보다 큰수가 들어오지 못하게하기.
+        // 그러면서 각 숫자는 없어지는지 확인하기.
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        int n = Integer.parseInt(br.readLine());
+        int num = 1;
+        Stack<Integer> stack = new Stack<>();
+        boolean flag = true;
 
-        while (true) {
-            String a = br.readLine();
-            if (a.equals(".")) break;
-            Stack<Character> stack = new Stack<>();
-            boolean isBalanced = true;
-
-            for (int j = 0; j < a.length(); j++) {
-                char c = a.charAt(j);
-                if (c == '(' || c == '[') {
-                    stack.push(c);
-                } else if (c == ')') {
-                    if (stack.isEmpty() || stack.peek() != '(') {
-                        isBalanced = false;
-                        break;
-                    }
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i=0; i<n; i++) {
+            int a = Integer.parseInt(st.nextToken());
+            if (a == num) {
+                num++;
+            } else {
+                while (!stack.isEmpty() && stack.peek() == num) {
                     stack.pop();
-                } else if (c == ']') {
-                    if (stack.isEmpty() || stack.peek() != '[') {
-                        isBalanced = false;
-                        break;
-                    }
-                    stack.pop();
+                    num++;
                 }
+                stack.push(a);
             }
-            if (!stack.isEmpty()) isBalanced = false;
-
-            sb.append(isBalanced ? "yes" : "no").append('\n');
         }
-        System.out.println(sb);
+
+        while (!stack.isEmpty() && stack.peek() == num) {
+            stack.pop();
+            num++;
+        }
+
+        if (stack.isEmpty()) System.out.println("Nice");
+        else System.out.println("Sad");
 
     }
 }
