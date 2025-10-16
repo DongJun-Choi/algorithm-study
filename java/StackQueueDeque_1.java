@@ -157,33 +157,85 @@ public class StackQueueDeque_1 {
         // 옆에 공간은 스택, 스택에 가장 최근에 들어간 수보다 큰수가 들어오지 못하게하기.
         // 그러면서 각 숫자는 없어지는지 확인하기.
 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // int n = Integer.parseInt(br.readLine());
+        // int num = 1;
+        // Stack<Integer> stack = new Stack<>();
+
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // for (int i=0; i<n; i++) {
+        //     int a = Integer.parseInt(st.nextToken());
+        //     if (a == num) {
+        //         num++;
+        //     } else {
+        //         while (!stack.isEmpty() && stack.peek() == num) {
+        //             stack.pop();
+        //             num++;
+        //         }
+        //         stack.push(a);
+        //     }
+        // }
+
+        // while (!stack.isEmpty() && stack.peek() == num) {
+        //     stack.pop();
+        //     num++;
+        // }
+
+        // if (stack.isEmpty()) System.out.println("Nice");
+        // else System.out.println("Sad");
+
+
+        // 18258
+        // 첫째 줄에 주어지는 명령의 수 N 입력, 1 ≤ N ≤ 2,000,000
+        // 둘째 줄부터 N개의 줄에는 명령이 하나씩 주어짐.
+        // 출력해야하는 명령이 주어질때마다 한줄에 하나씩 출력.
+        // 큐를 구현해야함 Queue<Integer> queue = new LinkedList<>(); 선언
+        // offer(값) 큐의 맨 뒤에 요소 추가, 비어있을 때 false반환
+        // add(값) 큐의 맨 뒤에 요소 추가, 비어있을 때예외발생 IllegalStateException
+        // poll() 큐의 맨 앞 요소를 꺼내서 제거, 비어있을 때 null 반환
+        // remove() 큐의 맨 앞 요소를 꺼내서 제거, 비어있을 때 예외발생
+        // peek() 큐의 맨 앞 요소를 조회만, 비어있을 때 null 반환
+        // element() 큐의 맨 앞 요소를 조회만, 비어있을 때 예외발생
+        // isEmpty() 큐가 비어있는지 확인
+        // size() 큐의 요소 개수 반환
+        // clear() 큐의 모든 요소 제거
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int num = 1;
-        Stack<Integer> stack = new Stack<>();
-        boolean flag = true;
+        Queue<Integer> queue = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i=0; i<n; i++) {
-            int a = Integer.parseInt(st.nextToken());
-            if (a == num) {
-                num++;
-            } else {
-                while (!stack.isEmpty() && stack.peek() == num) {
-                    stack.pop();
-                    num++;
-                }
-                stack.push(a);
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String command = st.nextToken();
+            switch (command) {
+                case "push":
+                    int num = Integer.parseInt(st.nextToken());
+                    queue.offer(num);
+                    break;
+                case "pop":
+                    if (queue.isEmpty()) sb.append(-1).append("\n");
+                    else sb.append(queue.poll()).append("\n");
+                    break;
+                case "size": 
+                    sb.append(queue.size()).append("\n");
+                    break;
+                case "empty":
+                    if (!queue.isEmpty()) sb.append(0).append("\n"); 
+                    else sb.append(1).append("\n");
+                    break;
+                case "front": 
+                    if (queue.isEmpty()) sb.append(-1).append("\n");
+                    else sb.append(queue.peek()).append("\n");
+                    break;
+                case "back": 
+                    if (queue.isEmpty()) sb.append(-1).append("\n");
+                    else sb.append(((LinkedList<Integer>) queue).peekLast()).append("\n");
+                    break;
             }
         }
 
-        while (!stack.isEmpty() && stack.peek() == num) {
-            stack.pop();
-            num++;
-        }
-
-        if (stack.isEmpty()) System.out.println("Nice");
-        else System.out.println("Sad");
+        System.out.println(sb);
 
     }
 }
