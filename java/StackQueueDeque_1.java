@@ -200,42 +200,65 @@ public class StackQueueDeque_1 {
         // size() 큐의 요소 개수 반환
         // clear() 큐의 모든 요소 제거
 
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // int n = Integer.parseInt(br.readLine());
+        // Queue<Integer> queue = new LinkedList<>();
+        // StringBuilder sb = new StringBuilder();
+
+        // for (int i=0; i<n; i++) {
+        //     StringTokenizer st = new StringTokenizer(br.readLine());
+        //     String command = st.nextToken();
+        //     switch (command) {
+        //         case "push":
+        //             int num = Integer.parseInt(st.nextToken());
+        //             queue.offer(num);
+        //             break;
+        //         case "pop":
+        //             if (queue.isEmpty()) sb.append(-1).append("\n");
+        //             else sb.append(queue.poll()).append("\n");
+        //             break;
+        //         case "size": 
+        //             sb.append(queue.size()).append("\n");
+        //             break;
+        //         case "empty":
+        //             if (!queue.isEmpty()) sb.append(0).append("\n"); 
+        //             else sb.append(1).append("\n");
+        //             break;
+        //         case "front": 
+        //             if (queue.isEmpty()) sb.append(-1).append("\n");
+        //             else sb.append(queue.peek()).append("\n");
+        //             break;
+        //         case "back": 
+        //             if (queue.isEmpty()) sb.append(-1).append("\n");
+        //             else sb.append(((LinkedList<Integer>) queue).peekLast()).append("\n");
+        //             break;
+        //     }
+        // }
+        // System.out.println(sb);
+
+
+        // 2164
+        // 첫째줄에 정수 N 입력, 1 ≤ N ≤ 500,000
+        // 첫째줄에 남게 되는 카드의 번호 출력
+        // 제일 위에 카드를 버리고, 제일 위에 있는 카드를 아래 카드 밑으로 옮기는 행위를 1장 남을때까지 진행
+        // 저번에 18258문제를 고민하면서 Deque에 대해 알게 되었다.
+        // 앞과 뒤에서 꺼낼 수 있는 형태이기 때문에 문제와 적절할 듯
+        
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        Queue<Integer> queue = new LinkedList<>();
-        StringBuilder sb = new StringBuilder();
+        Deque<Integer> deque = new ArrayDeque<>();
 
-        for (int i=0; i<n; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            String command = st.nextToken();
-            switch (command) {
-                case "push":
-                    int num = Integer.parseInt(st.nextToken());
-                    queue.offer(num);
-                    break;
-                case "pop":
-                    if (queue.isEmpty()) sb.append(-1).append("\n");
-                    else sb.append(queue.poll()).append("\n");
-                    break;
-                case "size": 
-                    sb.append(queue.size()).append("\n");
-                    break;
-                case "empty":
-                    if (!queue.isEmpty()) sb.append(0).append("\n"); 
-                    else sb.append(1).append("\n");
-                    break;
-                case "front": 
-                    if (queue.isEmpty()) sb.append(-1).append("\n");
-                    else sb.append(queue.peek()).append("\n");
-                    break;
-                case "back": 
-                    if (queue.isEmpty()) sb.append(-1).append("\n");
-                    else sb.append(((LinkedList<Integer>) queue).peekLast()).append("\n");
-                    break;
-            }
+        for (int i=1; i<=n; i++) {
+            deque.offerLast(i);
         }
 
-        System.out.println(sb);
+        while (deque.size() > 1) {
+            deque.pollFirst();
+            int num = deque.poll();
+            deque.offerLast(num);
+        }
+
+        System.out.println(deque.peek());
 
     }
 }
