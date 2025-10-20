@@ -244,21 +244,42 @@ public class StackQueueDeque_1 {
         // 저번에 18258문제를 고민하면서 Deque에 대해 알게 되었다.
         // 앞과 뒤에서 꺼낼 수 있는 형태이기 때문에 문제와 적절할 듯
         
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        Deque<Integer> deque = new ArrayDeque<>();
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // int n = Integer.parseInt(br.readLine());
+        // Deque<Integer> deque = new ArrayDeque<>();
 
-        for (int i=1; i<=n; i++) {
-            deque.offerLast(i);
-        }
+        // for (int i=1; i<=n; i++) {
+        //     deque.offerLast(i);
+        // }
 
-        while (deque.size() > 1) {
-            deque.pollFirst();
-            int num = deque.poll();
-            deque.offerLast(num);
-        }
+        // while (deque.size() > 1) {
+        //     deque.pollFirst();
+        //     int num = deque.poll();
+        //     deque.offerLast(num);
+        // }
+        // System.out.println(deque.peek());
 
-        System.out.println(deque.peek());
 
+        // 11866
+        // 첫째 줄에 N과 K가 빈 칸을 두고 순서대로 입력(1 ≤ K ≤ N ≤ 1,000)
+        // 요세푸스 순열을 출력
+        // deque를 사용하여 값을 빼면서 뺀값의 3번째 값마다 따로 저장
+
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+        // int n = Integer.parseInt(st.nextToken());
+        // int k = Integer.parseInt(st.nextToken());
+        // Deque<Integer> deque = new ArrayDeque<>();
+        // StringBuilder sb = new StringBuilder();
+        // sb.append("<");
+
+        // for (int i=1; i<=n; i++) deque.offerLast(i);
+        // while (!deque.isEmpty()) {
+        //     for (int i=0; i<k-1; i++) deque.offerLast(deque.pollFirst());
+        //     sb.append(deque.pollFirst());
+        //     if (!deque.isEmpty()) sb.append(", ");
+        //     else sb.append(">");
+        // }
+        // System.out.println(sb);
     }
 }
