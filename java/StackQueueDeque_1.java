@@ -281,5 +281,59 @@ public class StackQueueDeque_1 {
         //     else sb.append(">");
         // }
         // System.out.println(sb);
+    
+    
+        // 28279
+        // 첫째 줄에 명령의 수 N 입력(1 ≤ N ≤ 1,000,000)
+        // 둘째 줄부터 N개 줄에 명령이 하나씩 입력
+        // 출력을 요구하는 명령은 하나 이상 주어짐
+        // 출력을 요구하는 명령이 주어질 때마다 명령의 결과를 한 줄에 하나씩 출력
+
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // int n = Integer.parseInt(br.readLine());
+        // Deque<Integer> deque = new ArrayDeque<>();
+        // StringBuilder sb = new StringBuilder();
+        
+        // for(int i=0; i<n; i++) {
+        //     StringTokenizer st = new StringTokenizer(br.readLine());
+        //     int command = Integer.parseInt(st.nextToken());
+            
+        //     switch (command) {
+        //         case 1: {
+        //             int num = Integer.parseInt(st.nextToken());
+        //             deque.offerFirst(num);
+        //             break;
+        //         }
+        //         case 2: {
+        //             int num = Integer.parseInt(st.nextToken());
+        //             deque.offerLast(num);
+        //             break;
+        //         }
+        //         case 3:
+        //             if (!deque.isEmpty()) sb.append(deque.pollFirst()).append("\n");
+        //             else sb.append(-1).append("\n");
+        //             break;
+        //         case 4:
+        //             if (!deque.isEmpty()) sb.append(deque.pollLast()).append("\n");
+        //             else sb.append(-1).append("\n");
+        //             break;
+        //         case 5:
+        //             sb.append(deque.size()).append("\n");
+        //             break;
+        //         case 6:
+        //             sb.append(deque.isEmpty() ? 1 : 0).append("\n");
+        //             break;
+        //         case 7:
+        //             if (!deque.isEmpty()) sb.append(deque.peekFirst()).append("\n");
+        //             else sb.append(-1).append("\n");
+        //             break;
+        //         case 8:
+        //             if (!deque.isEmpty()) sb.append(deque.peekLast()).append("\n");
+        //             else sb.append(-1).append("\n");
+        //             break;
+        //     }
+        // }
+        // System.out.println(sb);
+    
     }
 }
