@@ -335,5 +335,45 @@ public class StackQueueDeque_1 {
         // }
         // System.out.println(sb);
     
+
+        // 2346
+        // 첫째 줄에 자연수 n 입력, (1 ≤ N ≤ 1,000)
+        // 둘째 줄에 각 풍선 안에 종이에 적힌 수 입력, 종이는 0은 적혀있지 않음
+        // 터진 풍선의 번호를 차례로 나열
+        // 일단 1번 풍선이 제일 먼저 나감
+        
+        // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // int n = Integer.parseInt(br.readLine());
+        // Deque<Integer> deque = new ArrayDeque<>();
+        // List<Integer> list = new ArrayList<>();
+        // StringBuilder sb = new StringBuilder();
+        // StringTokenizer st = new StringTokenizer(br.readLine());
+
+        // for (int i=0; i<n; i++) {
+        //     int balloon = Integer.parseInt(st.nextToken());
+        //     list.add(balloon);
+        //     deque.offerLast(i+1);
+        // }
+
+        // int num = list.get(0);
+        // sb.append(deque.pollFirst()).append(" ");
+        // while (!deque.isEmpty()) {
+        //     if (num < 0) {
+        //         for (int i=0; i<Math.abs(num)-1; i++) {
+        //             deque.offerFirst(deque.pollLast());
+        //         }
+        //         num = list.get(deque.peekLast()-1);
+        //         sb.append(deque.pollLast()).append(" ");
+        //     } else {
+        //         for (int i=0; i<num-1; i++) {
+        //             deque.offerLast(deque.pollFirst());
+        //         }
+        //         num = list.get(deque.peekFirst()-1);
+        //         sb.append(deque.pollFirst()).append(" ");
+        //     }
+        // }
+        // System.out.println(sb);
+
+
     }
 }
