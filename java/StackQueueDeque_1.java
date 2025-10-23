@@ -375,5 +375,40 @@ public class StackQueueDeque_1 {
         // System.out.println(sb);
 
 
+        // 24511
+        // 첫째줄에 queuestack을 구성하는 자료구조의 개수 N 입력(1<=N<=100,000)
+        // 둘째줄에 길이 N의 수열 A 입력, 첫 숫자가 0이면 큐, 1이면 스택
+        // 셋째줄에 길이 N의 수열 B 입력, 수열 B는  i번 자료구조에 들어있는 원소
+        // 넷째 줄에 삽입할 수열의 길이 M 입력(1<=M<=100,000)
+        // 다섯째 줄에 queuestack에 삽입할 원소를 담고 있는 길이 M의 수열 C입력(1<=C<=1,000,000,000)
+        // 수열 C의 원소를 차례대로 queuestack에 삽입했을 때 리턴값을 공백으로 구분하여 출력
+        // A는 queuestack의 사이에 어떻게 되어있는지 나타내는 것이고,
+        // B는 각 자료구조에 한 값씩 들어가는데 그 값들을 나타낸 것
+        // 근본적으로 stack은 들어온 값 그대로 출력됨. 결국 queue만 신경써주면 됨
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int[] a = new int[n];
+        int[] b = new int[n];
+        Deque<Integer> queuestack = new ArrayDeque<>();
+        StringBuilder sb = new StringBuilder();
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        for (int i=0; i<n; i++) a[i] = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+        for (int i=0; i<n; i++) b[i] = Integer.parseInt(st.nextToken());
+        for (int i=0; i<n; i++) if (a[i] == 0) queuestack.offerLast(b[i]);
+
+        int m = Integer.parseInt(br.readLine());
+        st = new StringTokenizer(br.readLine());
+        for (int i=0; i<m; i++) {
+            int c = Integer.parseInt(st.nextToken());
+            queuestack.offerFirst(c);
+            c = queuestack.pollLast();
+            sb.append(c).append(" ");
+        }
+
+        System.out.println(sb);
+
     }
 }
