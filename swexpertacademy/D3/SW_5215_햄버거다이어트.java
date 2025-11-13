@@ -1,7 +1,5 @@
 package D3;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class SW_5215_햄버거다이어트 {
