@@ -1,9 +1,11 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Solution {
 	static int n, min;
@@ -41,12 +43,14 @@ public class Solution {
 			
 //			min = Integer.MAX_VALUE;
 //			visited = new boolean[n][n];
-// 			dp = new int[n][n];
+ 			dp = new int[n][n];
+ 			
 //			
 //			visited[0][0] = true;
 //			dfs(0, 0, 0);
 			
-			int ans = dijkstra();
+//			int ans = dijkstra();
+			int ans = bfs();
 			
 			sb.append('#').append(tc).append(' ').append(ans).append("\n");
 		}
@@ -84,10 +88,36 @@ public class Solution {
         return dist[n-1][n-1];
 	}
 	
-	static int bfs(int row, int col) {	
-		
-		
-		return -1;
+	static int bfs() {
+	    for (int i = 0; i < n; i++) Arrays.fill(dp[i], INF);
+
+	    ArrayDeque<int[]> q = new ArrayDeque<>();
+	    dp[0][0] = 0;
+	    q.add(new int[]{0, 0});
+
+	    while (!q.isEmpty()) {
+	        int[] cur = q.poll();
+	        int r = cur[0];
+	        int c = cur[1];
+
+	        // 현재 칸 비용
+	        int curCost = dp[r][c];
+
+	        for (int d = 0; d < 4; d++) {
+	            int nr = r + dir[d][0];
+	            int nc = c + dir[d][1];
+	            if (nr < 0 || nc < 0 || nr >= n || nc >= n) continue;
+
+	            int newCost = curCost + arr[nr][nc];
+
+	            if (newCost < dp[nr][nc]) {
+	                dp[nr][nc] = newCost;
+	                q.add(new int[]{nr, nc});
+	            }
+	        }
+	    }
+
+	    return dp[n - 1][n - 1];
 	}
 		
 	static void dfs(int row, int col, int time) {
