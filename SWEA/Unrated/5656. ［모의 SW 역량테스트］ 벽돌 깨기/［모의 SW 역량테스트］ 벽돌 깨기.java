@@ -1,138 +1,164 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Solution {
-    static int N, W, H;
-    static int min;
-    static int[][] dir = { {-1,0},{1,0},{0,-1},{0,1} };
+	
+	static int n, w, h, min;
+	static int[][][] arr;
+	static boolean[][] visited;
+	
+	static int[] dr = {-1, 1, 0, 0};
+	static int[] dc = {0, 0, -1, 1};
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
+		int t = Integer.parseInt(br.readLine());
+		
+		for(int tc=1; tc<=t; tc++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			n = Integer.parseInt(st.nextToken());
+			w = Integer.parseInt(st.nextToken());
+			h = Integer.parseInt(st.nextToken());
+			
+			arr = new int[n+1][h][w];
+			
+			for(int i=0; i<h; i++) {
+				st = new StringTokenizer(br.readLine());
+				for(int j=0; j<w; j++) {
+					arr[0][i][j] = Integer.parseInt(st.nextToken());
+				}
+			}
+			
+//			벽돌을 쏘는 조합 w에서 골라 N번 중복 허용
+			min = Integer.MAX_VALUE;
+			
+			perm(0);
+			
+			
+//			벽돌을 쏘면 그 위치에서 어디부터 어디까지 터지는지 판단
+//			터지는 것 확인하고, 정렬하는 함수
+//			남은 벽돌 개수 세는 함수
+		
+			sb.append('#').append(tc).append(' ').append(min).append("\n");			
+		}
+		System.out.println(sb);
+	}
+	
+//	1~n번까지 선택된 수를 돌려야함.
+//	개인적으로 0, 0, 0, 0, 0 => 0, 0, 0, 0, 1 이런식으로 맨 마지막 선택부터 바꾸는 조합
+	static void perm(int idx) {
+	    if(idx == n) {
+	        min = Math.min(min, count());
+	        return;
+	    }
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        int T = Integer.parseInt(br.readLine());
+	    for(int i = 0; i < w; i++) {
+	        boom(idx + 1, i);
+	        perm(idx + 1);
+	    }
+	}
+	
+	
+//	몇번째인가, 어디를 터칠건가
+	static void boom(int num, int start) {
+		for(int i=0; i<h; i++) {
+			arr[num][i] = Arrays.copyOf(arr[num-1][i], w);
+		}
+		
+		Queue<int[]> q = new LinkedList<>();
+		
+		q.add(new int[] {search(num, start), start});
+		
+		while(!q.isEmpty()) {
+			int[] cur = q.poll();
+			int r = cur[0];
+			int c = cur[1];
+			
+			int cnt = arr[num][r][c] - 1;
+			arr[num][r][c] = 0;
+			
+			for(int d=0; d<4; d++) {
+				int nr = r;
+				int nc = c;
+				for(int i=0; i<cnt; i++) {
+					nr += dr[d];
+					nc += dc[d];
+					
+					if(nr >= h || nr < 0 || nc >= w || nc < 0) continue;
+					
+					if(arr[num][nr][nc] == 0) continue;
+					
+					q.add(new int[] {nr, nc});
+				}
+			}				
+		}
+		
+		sort(num);
+		
+	}
+	
+	static void print(int num) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(num+"번째 맵").append("\n");
+		for(int i=0; i<h; i++) {
+			for(int j=0; j<w; j++) {
+				sb.append(arr[num][i][j]).append(' ');
+			}
+			sb.append("\n");
+		}
+		
+		System.out.println(sb);
+	}
+	
+//	정렬하는 함수
+	static void sort(int num) {
+		for(int i=0; i<w; i++) {
+			int block = 0;
+			for(int j=h-1; j>=0; j--) {
+				if(arr[num][j][i] != 0) {
+					arr[num][h-1-block][i] = arr[num][j][i];
+					
+					if((h-1-block) != j) arr[num][j][i] = 0;
+					
+					block++;
+				}
+			}
+		}
 
-        for (int tc = 1; tc <= T; tc++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            N = Integer.parseInt(st.nextToken());
-            W = Integer.parseInt(st.nextToken());
-            H = Integer.parseInt(st.nextToken());
+	}
+	
+//	그 줄에 가장 첫번째 블록 찾기
+	static int search(int num, int start) {
+		int idx = 0;
+		
+		for(int i=0; i<h; i++) {
+			if(arr[num][i][start] != 0) {
+				idx = i;
+				break;
+			}
+		}
+		
+		return idx;
+	}
+	
+//	맵에 블록 갯수 세는 함수
+	static int count() {
+		int count = 0;
+		
+		for(int i=0; i<w; i++) {
+			for(int j=h-1; j>=0; j--) {
+				if(arr[n][j][i] == 0) break;
+				count++;
+			}
+		}
+		
+		return count;
+	}
 
-            int[][] arr = new int[H][W];
-            int remain = 0; // 초기 벽돌 개수
-
-            for (int i = 0; i < H; i++) {
-                st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < W; j++) {
-                    arr[i][j] = Integer.parseInt(st.nextToken());
-                    if (arr[i][j] != 0) remain++;
-                }
-            }
-
-            min = Integer.MAX_VALUE;
-            dfs(0, arr, remain);
-
-            sb.append("#").append(tc).append(" ").append(min).append("\n");
-        }
-        System.out.print(sb);
-    }
-
-    // depth번째 구슬 떨어뜨리기
-    static void dfs(int depth, int[][] arr, int remain) {
-        if (remain == 0) {
-            min = 0;
-            return;
-        }
-        if (depth == N) {
-            min = Math.min(min, remain);
-            return;
-        }
-
-        boolean emptyCalled = false; // 빈 열(-1)로 동일 상태 dfs 중복 호출 방지
-
-        for (int c = 0; c < W; c++) {
-            int r = firstBrickRow(arr, c);
-
-            // 이 열은 아무것도 없음: 맵 변화 없으니 remain 그대로 (한 번만 호출)
-            if (r == -1) {
-                if (!emptyCalled) {
-                    emptyCalled = true;
-                    dfs(depth + 1, arr, remain);
-                }
-                continue;
-            }
-
-            int[][] next = new int[H][W];
-            for (int i = 0; i < H; i++) {
-                next[i] = Arrays.copyOf(arr[i], W);
-            }
-
-            // 부순 개수 받아서 remain에서 빼기
-            int broken = boom(next, r, c);
-
-            gravity(next);
-            dfs(depth + 1, next, remain - broken);
-
-            if (min == 0) return;
-        }
-    }
-
-    // 해당 열의 가장 위의 벽돌 찾는 함수
-    static int firstBrickRow(int[][] map, int c) {
-        for (int r = 0; r < H; r++) {
-            if (map[r][c] != 0) return r;
-        }
-        return -1;
-    }
-
-    // 폭발 처리(BFS): 부순 개수 리턴
-    static int boom(int[][] map, int sr, int sc) {
-        int broken = 0;
-        ArrayDeque<int[]> q = new ArrayDeque<>();
-
-        int start = map[sr][sc];
-        if (start == 0) return 0;
-
-        // 시작 벽돌 제거
-        if (start > 1) q.add(new int[]{sr, sc, start});
-        map[sr][sc] = 0;
-        broken++;
-
-        while (!q.isEmpty()) {
-            int[] cur = q.poll();
-            int r = cur[0], c = cur[1], power = cur[2];
-
-            for (int d = 0; d < 4; d++) {
-                int nr = r, nc = c;
-                for (int k = 1; k < power; k++) {
-                    nr += dir[d][0];
-                    nc += dir[d][1];
-
-                    if (nr < 0 || nr >= H || nc < 0 || nc >= W) break;
-                    if (map[nr][nc] == 0) continue;
-
-                    int v = map[nr][nc];
-                    if (v > 1) q.add(new int[]{nr, nc, v});
-
-                    map[nr][nc] = 0;
-                    broken++;
-                }
-            }
-        }
-        return broken;
-    }
-
-    // 중력: 각 열마다 아래에서부터 채우기
-    static void gravity(int[][] map) {
-        for (int c = 0; c < W; c++) {
-            int write = H - 1;
-            for (int r = H - 1; r >= 0; r--) {
-                if (map[r][c] != 0) {
-                    int v = map[r][c];
-                    map[r][c] = 0;
-                    map[write][c] = v;
-                    write--;
-                }
-            }
-        }
-    }
 }
