@@ -1,26 +1,17 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Solution {
-	static int n, min;
-	static int[][] arr;
-	static int[][] dir = {{-1, 0}, {1, 0}, {0,-1}, {0, 1}};
-	static boolean[][] visited;
-	static int[][] dp;
-	static final int INF = 1_000_000_000;
 	
-	static class Node {
-        int r, c, cost;
-        Node(int r, int c, int cost){
-            this.r = r; this.c = c; this.cost = cost;
-        }
-    }
+	static final int INF = 1_000_000;
+	static int n;
+	static int[][] dist, arr;
+	
+	static int[] dr = {-1, 1, 0, 0};
+	static int[] dc = {0, 0, -1, 1};
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,7 +20,7 @@ public class Solution {
 		
 		for(int tc=1; tc<=t; tc++) {
 			n = Integer.parseInt(br.readLine());
-			arr = new int[n][n];
+			arr = new int[n][n];		
 			
 			for(int i=0; i<n; i++) {
 				String s = br.readLine();
@@ -37,113 +28,55 @@ public class Solution {
 					arr[i][j] = s.charAt(j) - '0';
 				}
 			}
-//			현재 위치에서 이동시키기, 이동시킬때 앞에 0보다 크면 그 숫자만큼 time에 더하고 이동하기.
-//			bfs로 돌리면 큐는 가장 빨리 도착하는 것이겠지만 최소 시간인지는 애매함 dfs로 풀어야 할 거 같은데?
-//			dfs로 하니까 시간 ㅈㄴ 걸리네 지도는 100*100이야.
 			
-//			min = Integer.MAX_VALUE;
-//			visited = new boolean[n][n];
- 			dp = new int[n][n];
- 			
-//			
-//			visited[0][0] = true;
-//			dfs(0, 0, 0);
+			dist = new int[n][n];
 			
-//			int ans = dijkstra();
-			int ans = bfs();
+			for(int i=0; i<n; i++) {
+				Arrays.fill(dist[i], INF);
+			}
 			
-			sb.append('#').append(tc).append(' ').append(ans).append("\n");
+//			0, 0에서 출발해서 n-1, n-1까지 가야함.
+//			맵에 적힌 값이 걸리는 시간
+			
+			dijstra(0, 0);
+			
+			int ans = dist[n-1][n-1];
+			
+			sb.append('#').append(tc).append(' ').append(ans).append("\n");			
 		}
-		
 		System.out.println(sb);
 	}
 	
-	static int dijkstra() {
-		int[][] dist = new int[n][n];
-        for(int i=0;i<n;i++) Arrays.fill(dist[i], INF);
 
-        PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.cost));
-
-        dist[0][0] = 0;
-        pq.add(new Node(0,0,0));
-
-        while(!pq.isEmpty()){
-            Node cur = pq.poll();
-
-            if(cur.cost != dist[cur.r][cur.c]) continue;
-            if(cur.r == n-1 && cur.c == n-1) return cur.cost;
-
-            for(int d=0; d<4; d++){
-                int nr = cur.r + dir[d][0];
-                int nc = cur.c + dir[d][1];
-                if(nr<0||nc<0||nr>=n||nc>=n) continue;
-
-                int ncost = cur.cost + arr[nr][nc];
-                if(ncost < dist[nr][nc]){
-                    dist[nr][nc] = ncost;
-                    pq.add(new Node(nr,nc,ncost));
-                }
-            }
-        }
-        return dist[n-1][n-1];
-	}
-	
-	static int bfs() {
-	    for (int i = 0; i < n; i++) Arrays.fill(dp[i], INF);
-
-	    ArrayDeque<int[]> q = new ArrayDeque<>();
-	    dp[0][0] = 0;
-	    q.add(new int[]{0, 0});
-
-	    while (!q.isEmpty()) {
-	        int[] cur = q.poll();
-	        int r = cur[0];
-	        int c = cur[1];
-
-	        // 현재 칸 비용
-	        int curCost = dp[r][c];
-
-	        for (int d = 0; d < 4; d++) {
-	            int nr = r + dir[d][0];
-	            int nc = c + dir[d][1];
-	            if (nr < 0 || nc < 0 || nr >= n || nc >= n) continue;
-
-	            int newCost = curCost + arr[nr][nc];
-
-	            if (newCost < dp[nr][nc]) {
-	                dp[nr][nc] = newCost;
-	                q.add(new int[]{nr, nc});
-	            }
-	        }
-	    }
-
-	    return dp[n - 1][n - 1];
-	}
+	static void dijstra(int sr, int sc) {		
+		PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[2] - b[2]);
+		pq.add(new int[] {sr, sc, 0});
 		
-	static void dfs(int row, int col, int time) {
-		if(time > min) return;
+		dist[sr][sc] = 0;
 		
-		if(row == n-1 && col == n-1) {
-			min = Math.min(min, time);
-			return;
+		while(!pq.isEmpty()) {
+			int[] cur = pq.poll();
+			
+			int r = cur[0];
+			int c = cur[1];
+			int cost = cur[2];
+			
+			if(r == n-1 && c == n-1) break;
+			
+			if(dist[r][c] < cost) continue;
+			
+			for(int d=0; d<4; d++) {
+				int nr = r+dr[d];
+				int nc = c+dc[d];
+				
+				if(nr >= n || nr < 0 || nc >= n || nc < 0) continue;
+				
+				int ncost = cost + arr[nr][nc];
+				if(dist[nr][nc] <= ncost) continue;
+				dist[nr][nc] = ncost;
+				
+				pq.add(new int[] {nr, nc, ncost});
+			}
 		}
-		
-		for(int d=0; d<4; d++) {
-			int nr = row+dir[d][0];
-			int nc = col+dir[d][1];
-			
-			if(nr >= n || nr < 0 || nc >= n || nc < 0) continue;
-			
-			if(dp[nr][nc] < time && visited[nr][nc]) continue;
-			if(visited[nr][nc]) continue;
-			
-			dp[nr][nc] = time;
-			visited[nr][nc] = true;
-			int val = arr[nr][nc];
-			dfs(nr, nc, time+val);
-			visited[nr][nc] = false;
-		}
-		
 	}
-
 }
