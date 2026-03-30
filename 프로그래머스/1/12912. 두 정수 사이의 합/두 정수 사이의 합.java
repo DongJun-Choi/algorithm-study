@@ -2,12 +2,10 @@ class Solution {
     public long solution(int a, int b) {
         long answer = 0;
         
-        int min = Math.min(a, b);
-        int max = Math.max(a, b);
+        long min = Math.min(a, b);
+        long max = Math.max(a, b);
         
-        for(int i=min; i<=max; i++) {
-            answer += i;
-        }
+        answer = (max+min) * (max-min+1) / 2;
         
         return answer;
     }
