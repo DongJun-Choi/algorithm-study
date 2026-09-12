@@ -1,61 +1,68 @@
+import java.util.*;
+
 class Solution {
     
-    static int[] parent;
-    
-    static void set(int n) {
-        parent = new int[n+1];
-        for(int i=1; i<=n; i++) {
-            parent[i] = i;
-        }
-    }
-    
-    static int find(int x) {
-        if(parent[x] == x) return x;
-        return parent[x] = find(parent[x]);
-	}
-    
-    static void union(int a, int b) {
-        int rootA = find(a);
-        int rootB = find(b);
-
-        if(rootA != rootB) {
-            parent[rootB] = rootA;
-        }
-    }
+    List<Integer>[] graph;
     
     public int solution(int n, int[][] wires) {
-        int answer = Integer.MAX_VALUE;
+//         트리형태 => 무조건 사이클이 없음
+//         graph에 넣는데 연결이 안되있으면 넣지 않기
+        graph = new ArrayList[n+1];
         
-        for(int i=0; i<n-1; i++) {
-            int a = 0;
-            int b = 0;
+        for(int i=1; i<n+1; i++) {
+            graph[i] = new ArrayList<>();
+        }      
+        
+        for(int i=0; i<wires.length; i++) {
+            int a = wires[i][0];
+            int b = wires[i][1];
             
-            set(n);
-            for(int j=0; j<n-1; j++) {
-                if(i == j) continue;
-                union(wires[j][0], wires[j][1]);  
-            }
-            
-            int flag = find(1);
-            a++;
-            
-            for(int j=2; j<=n; j++) {
-                if(find(j) == flag) a++;
-                else b++;
-            }
-            
-            answer = Math.min(answer, Math.abs(a-b));
+            graph[a].add(b);
+            graph[b].add(a);
         }
         
+        int answer = Integer.MAX_VALUE;
         
-        
-//         현재 트리는 다 연결되어있는 상태(순환 사이클은 없음)
-//         전선들 중 하나를 끊어서 하기(전선의 개수는 n-1개)
-        
-//         전선 한개 끊고 돌려서 서로 비교 시키기
-        
-        
-        
+        for(int i=0; i<wires.length; i++) {
+            int cutA = wires[i][0];
+            int cutB = wires[i][1];
+            
+            int count = bfs(1, n, cutA, cutB);
+            int other = n-count;
+            
+            answer = Math.min(answer, Math.abs(count-other));            
+        }
+           
         return answer;
+    }
+    
+    int bfs(int start, int n, int cutA, int cutB) {
+
+        boolean[] visited = new boolean[n + 1];
+        Queue<Integer> q = new ArrayDeque<>();
+
+        q.offer(start);
+        visited[start] = true;
+
+        int count = 0;
+
+        while(!q.isEmpty()) {
+
+            int cur = q.poll();
+            count++;
+
+            for(int next : graph[cur]) {
+                if((cur == cutA && next == cutB) || (cur == cutB && next == cutA)) {
+                    continue;
+                }
+
+                if(visited[next]) continue;
+
+                visited[next] = true;
+                q.offer(next);
+            }
+        }
+
+        return count;
     }
 }
