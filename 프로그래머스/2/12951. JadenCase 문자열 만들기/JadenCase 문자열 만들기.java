@@ -1,20 +1,17 @@
 class Solution {
     public String solution(String s) {
         String answer = "";
-        boolean flag = true;
-        int len = s.length();
-        for(int i=0; i<len; i++) {
-            char c = s.charAt(i);
-            if(c == ' ') {
-                answer += ' ';
-                flag = true;
-            } else if(flag) {
-                answer += Character.toUpperCase(c); 
-                flag = false;
+        
+        answer += Character.toUpperCase(s.charAt(0));
+        
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i - 1) == ' ') {
+                answer += Character.toUpperCase(s.charAt(i));
             } else {
-                answer += Character.toLowerCase(c);   
+                answer += Character.toLowerCase(s.charAt(i));
             }
         }
+        
         return answer;
     }
 }
